@@ -1,0 +1,33 @@
+package com.sanluan.common.servlet.view;
+
+import java.io.IOException;
+import java.io.Writer;
+
+import freemarker.core.Environment;
+import freemarker.template.TemplateException;
+import freemarker.template.TemplateExceptionHandler;
+
+/**
+ * @author zhangxd
+ * 
+ */
+public class ShortMessageTemplateExceptionHandler implements TemplateExceptionHandler {
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * freemarker.template.TemplateExceptionHandler#handleTemplateException(
+	 * freemarker.template.TemplateException, freemarker.core.Environment,
+	 * java.io.Writer)
+	 */
+	@Override
+	public void handleTemplateException(TemplateException templateexception, Environment environment, Writer writer)
+			throws TemplateException {
+		try {
+			writer.write("[ERROR: " + templateexception.getMessage() + "]");
+		} catch (IOException e) {
+		}
+	}
+
+}

@@ -1,0 +1,46 @@
+<@d_rssList name=queryName parentId=parentId tree=true pageNo=pageNum count=numPerPage>
+<form id="pagerForm" method="post">
+	<#include "../include_page/queryParamters.html"/>
+</form>
+<div class="pageHeader">
+	<form onsubmit="return navTabSearch(this);" method="post">
+	<div class="searchBar">
+		<table class="searchContent">
+			<tr>
+				<td>
+					名称：<input type="text" name="queryName" value="${queryName!}" />
+				</td>
+			</tr>
+		</table>
+		<#include "../include_page/searchBar.html"/>
+	</div>
+	</form>
+</div>
+<div class="pageContent">
+	<div class="panelBar">
+		<ul class="toolBar">
+			<li><a class="add" href="rss/add.html?parentId=${parentId!}" target="dialog"><span>添加</span></a></li>
+			<li><a class="delete" href="rss/delete.do?id={sid}" title="确定要删除吗?" target="ajaxTodo"><span>删除</span></a></li>
+		</ul>
+	</div>
+	<table class="table" width="100%" layoutH="137">
+		<thead>
+			<tr>
+				<th width="50">名称</th>
+				<th width="50">地址</th>
+				<th width="50">添加时间</th>
+			</tr>
+		</thead>
+		<tbody>
+			<#list t_list as a>
+			<tr target="sid" rel="${a.id}">
+				<td><a href="rss/list.html?navTabId=${navTabId}&parentId=${a.id}" target="navTab" rel="${navTabId}">${a.name}</a></td>
+				<td><#if a.url??><a href="${a.url?html}" target="_blank">${a.url?html}</a></#if></td>
+				<td>${a.createDate}</td>
+			</tr>
+			</#list>
+		</tbody>
+	</table>
+<#include "../include_page/page.html"/>
+</div>
+</@d_rssList>
