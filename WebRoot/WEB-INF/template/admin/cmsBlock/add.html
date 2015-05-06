@@ -1,0 +1,42 @@
+<@d_cmsBlock id=id><#assign a=t_bean/></@d_cmsBlock>
+<div class="pageContent">
+	<form method="post" action="cmsBlock/save.do?callbackType=closeCurrent" class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDone);">
+		<input name="id" type="hidden" value="${id!}" />
+		<div class="pageFormContent" layoutH="57">
+			<dl>
+				<dt>页面：</dt>
+				<dd><input class="required" name="pageId" type="text" size="30" value="${(a.pageId)!}"/></dd>
+			</dl>
+			<dl>
+				<dt>分类：</dt>
+				<dd><input class="required" name="categoryId" type="text" size="30" value="${(a.categoryId)!}"/></dd>
+			</dl>
+			<dl>
+				<dt>名称：</dt>
+				<dd><input class="required" name="name" type="text" size="30" value="${(a.name)!}"/></dd>
+			</dl>
+			<dl>
+				<dt>模板：</dt>
+				<dd><input class="required" name="template" type="text" size="30" value="${(a.template)!}"/></dd>
+			</dl>
+			<dl>
+				<dt>数据条数：</dt>
+				<dd><input class="required" name="dataSize" type="text" size="30" value="${(a.dataSize)!}"/></dd>
+			</dl>
+			<dl>
+				<dt>类型：</dt>
+				<dd><input class="required" name="type" type="text" size="30" value="${(a.type)!}"/></dd>
+			</dl>
+			<dl>
+				<dt>描述：</dt>
+				<dd><input class="required" name="description" type="text" size="30" value="${(a.description)!}"/></dd>
+			</dl>
+		</div>
+		<div class="formBar">
+			<ul>
+				<li><div class="buttonActive"><div class="buttonContent"><button type="submit">保存</button></div></div></li>
+				<li><div class="button"><div class="buttonContent"><button type="button" class="close">取消</button></div></div></li>
+			</ul>
+		</div>
+	</form>
+</div>

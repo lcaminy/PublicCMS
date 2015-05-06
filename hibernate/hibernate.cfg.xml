@@ -6,7 +6,7 @@
     <session-factory>
         <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
         <property name="hibernate.connection.password">11111111</property>
-        <property name="hibernate.connection.url">jdbc:mysql://127.0.0.1/cmdb</property>
+        <property name="hibernate.connection.url">jdbc:mysql://127.0.0.1/sanluan_cms</property>
         <property name="hibernate.connection.username">root</property>
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
     </session-factory>

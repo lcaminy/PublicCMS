@@ -1,0 +1,62 @@
+<@d_cmsBlockDataList blockId=queryBlockId startCreateDate=queryStartCreateDate endCreateDate=queryEndCreateDate isDisable=queryIsDisable pageNo=pageNum count=numPerPage>
+<form id="pagerForm" method="post">
+	<#include "../include_page/queryParamters.html"/>
+</form>
+<div class="pageHeader">
+	<form onsubmit="return navTabSearch(this);" method="post">
+	<div class="searchBar">
+		<table class="searchContent">
+			<tr>
+				<td>
+					块：<input type="text" name="queryBlockId" value="${queryBlockId!}" />
+				</td>
+				<td>
+					<label>创建日期：</label>
+					<input type="text" name="queryStartCreateDate" class="date" dateFmt="yyyy-MM-dd" maxDate="{%y}-%M-{%d}" value="${queryStartCreateDate!}" />
+					-
+					<input type="text" name="queryEndCreateDate" class="date" dateFmt="yyyy-MM-dd" maxDate="{%y}-%M-{%d}" value="${queryEndCreateDate!}" />
+				</td>
+				<td>
+					已删除：<input type="text" name="queryIsDisable" value="${queryIsDisable!}" />
+				</td>
+			</tr>
+		</table>
+		<#include "../include_page/searchBar.html"/>
+	</div>
+	</form>
+</div>
+<div class="pageContent">
+	<div class="panelBar">
+		<ul class="toolBar">
+			<li><a class="add" href="cmsBlockData/add.html" target="dialog"><span>添加</span></a></li>
+			<li><a class="edit" href="cmsBlockData/add.html?navTabId=${navTabId!}&id={sid}" target="dialog"><span>修改</span></a></li>
+			<li><a class="delete" href="cmsBlockData/delete.do?id={sid}" title="确定要删除该条记录吗?" target="ajaxTodo"><span>删除</span></a></li>
+		</ul>
+	</div>
+	<table class="table" width="100%" layoutH="137">
+		<thead>
+			<tr>
+				<th>块</th>
+				<th>标题</th>
+				<th>图片</th>
+				<th>描述</th>
+				<th>创建日期</th>
+				<th>已删除</th>
+			</tr>
+		</thead>
+		<tbody>
+			<#list t_list as a>
+			<tr target="sid" rel="${a.id}">
+				<td>${a.blockId!}</td>
+				<td>${a.title!}</td>
+				<td>${a.image!}</td>
+				<td>${a.description!}</td>
+				<td>${a.createDate!}</td>
+				<td>${a.isDisable!}</td>
+			</tr>
+			</#list>
+		</tbody>
+	</table>
+<#include "../include_page/page.html"/>
+</div>
+</@d_cmsBlockDataList>

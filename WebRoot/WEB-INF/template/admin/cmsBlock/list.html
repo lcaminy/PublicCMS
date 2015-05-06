@@ -1,0 +1,61 @@
+<@d_cmsBlockList pageId=queryPageId categoryId=queryCategoryId type=queryType pageNo=pageNum count=numPerPage>
+<form id="pagerForm" method="post">
+	<#include "../include_page/queryParamters.html"/>
+</form>
+<div class="pageHeader">
+	<form onsubmit="return navTabSearch(this);" method="post">
+	<div class="searchBar">
+		<table class="searchContent">
+			<tr>
+				<td>
+					页面：<input type="text" name="queryPageId" value="${queryPageId!}" />
+				</td>
+				<td>
+					分类：<input type="text" name="queryCategoryId" value="${queryCategoryId!}" />
+				</td>
+				<td>
+					类型：<input type="text" name="queryType" value="${queryType!}" />
+				</td>
+			</tr>
+		</table>
+		<#include "../include_page/searchBar.html"/>
+	</div>
+	</form>
+</div>
+<div class="pageContent">
+	<div class="panelBar">
+		<ul class="toolBar">
+			<li><a class="add" href="cmsBlock/add.html" target="dialog"><span>添加</span></a></li>
+			<li><a class="edit" href="cmsBlock/add.html?navTabId=${navTabId!}&id={sid}" target="dialog"><span>修改</span></a></li>
+			<li><a class="delete" href="cmsBlock/delete.do?id={sid}" title="确定要删除该条记录吗?" target="ajaxTodo"><span>删除</span></a></li>
+		</ul>
+	</div>
+	<table class="table" width="100%" layoutH="137">
+		<thead>
+			<tr>
+				<th>页面</th>
+				<th>分类</th>
+				<th>名称</th>
+				<th>模板</th>
+				<th>数据条数</th>
+				<th>类型</th>
+				<th>描述</th>
+			</tr>
+		</thead>
+		<tbody>
+			<#list t_list as a>
+			<tr target="sid" rel="${a.id}">
+				<td>${a.pageId!}</td>
+				<td>${a.categoryId!}</td>
+				<td>${a.name!}</td>
+				<td>${a.template!}</td>
+				<td>${a.dataSize!}</td>
+				<td>${a.type!}</td>
+				<td>${a.description!}</td>
+			</tr>
+			</#list>
+		</tbody>
+	</table>
+<#include "../include_page/page.html"/>
+</div>
+</@d_cmsBlockList>

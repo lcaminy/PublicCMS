@@ -29,14 +29,14 @@ public class Maker {
 	public static final String SERVICE_SUFFIX = "Service";
 	public static final String DIRECTIVE_BASE_PACKAGE = "views.directive";
 	public static final String DIRECTIVE_SUFFIX = "Directive";
-	public static final String CONTROLLER_BASE_PACKAGE = "views.controller";
+	public static final String CONTROLLER_BASE_PACKAGE = "admin.views.controller";
 	public static final String CONTROLLER_SUFFIX = "Controller";
 	public static final String WEB_BASE_PATH = "WebRoot/WEB-INF/template/admin/";
 
 	public static void main(String[] args) {
 		Maker sourceMaker = new Maker();
 		boolean overwrite = false;
-		sourceMaker.make("cn.com.trends", "cmdb", overwrite);
+		sourceMaker.make("com.sanluan.cms", "cms", overwrite);
 	}
 
 	public void make(String basePackage) {

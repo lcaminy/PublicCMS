@@ -14,7 +14,6 @@ import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
 
-
 import freemarker.core.Environment;
 import freemarker.template.TemplateBooleanModel;
 import freemarker.template.TemplateDateModel;
@@ -166,7 +165,7 @@ public class DirectiveHandler {
 			environment.setVariable(key, map.get(key));
 		}
 	}
-	
+
 	/**
 	 * @param index
 	 * @return
@@ -240,6 +239,34 @@ public class DirectiveHandler {
 	 * @return
 	 * @throws TemplateException
 	 */
+	public Short getShort(String name) throws TemplateException {
+		TemplateModel model = parameters.get(name);
+		if (null == model) {
+			return null;
+		}
+		if (model instanceof TemplateNumberModel) {
+			return ((TemplateNumberModel) model).getAsNumber().shortValue();
+		} else if (model instanceof TemplateScalarModel) {
+			String s = ((TemplateScalarModel) model).getAsString();
+			if (StringUtils.isBlank(s)) {
+				return null;
+			}
+			try {
+				return Short.parseShort(s);
+			} catch (NumberFormatException e) {
+				return null;
+			}
+		} else {
+			return null;
+		}
+	}
+
+	/**
+	 * @param name
+	 * 
+	 * @return
+	 * @throws TemplateException
+	 */
 	public Long getLong(String name) throws TemplateException {
 		TemplateModel model = parameters.get(name);
 		if (null == model) {
@@ -254,6 +281,34 @@ public class DirectiveHandler {
 			}
 			try {
 				return Long.parseLong(s);
+			} catch (NumberFormatException e) {
+				return null;
+			}
+		} else {
+			return null;
+		}
+	}
+	
+	/**
+	 * @param name
+	 * 
+	 * @return
+	 * @throws TemplateException
+	 */
+	public Double getDouble(String name) throws TemplateException {
+		TemplateModel model = parameters.get(name);
+		if (null == model) {
+			return null;
+		}
+		if (model instanceof TemplateNumberModel) {
+			return ((TemplateNumberModel) model).getAsNumber().doubleValue();
+		} else if (model instanceof TemplateScalarModel) {
+			String s = ((TemplateScalarModel) model).getAsString();
+			if (StringUtils.isBlank(s)) {
+				return null;
+			}
+			try {
+				return Double.parseDouble(s);
 			} catch (NumberFormatException e) {
 				return null;
 			}

@@ -16,7 +16,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.sanluan.common.handler.PageHandler;
 import com.sanluan.common.handler.QueryHandler;
 
-
 /**
  * @author zhangxd
  * 
@@ -37,11 +36,16 @@ public abstract class BaseDao<E> {
 		return new Date();
 	}
 
-	public Date tomorrow(Date date){
+	public Date tomorrow(Date date) {
 		return DateUtils.addDays(date, 1);
 	}
+
 	public static boolean notEmpty(String var) {
 		return StringUtils.isNoneBlank(var);
+	}
+
+	public static boolean notEmpty(Short var) {
+		return null != var;
 	}
 
 	public static boolean notEmpty(String[] var) {
