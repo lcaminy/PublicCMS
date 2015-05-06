@@ -3,11 +3,9 @@ package com.sanluan.common.servlet;
 import static com.sanluan.common.constants.FreeMakerConstants.CONTEXT_BASE;
 import static com.sanluan.common.constants.FreeMakerConstants.CONTEXT_NOCACHE;
 import static com.sanluan.common.constants.FreeMakerConstants.DIRECTIVE_BASE_CLASS;
-import static com.sanluan.common.constants.FreeMakerConstants.DIRECTIVE_BASE_PACKAGE;
 import static com.sanluan.common.constants.FreeMakerConstants.DIRECTIVE_CUT_STRING;
 import static com.sanluan.common.constants.FreeMakerConstants.DIRECTIVE_PREFIX;
 import static com.sanluan.common.constants.FreeMakerConstants.METHOD_BASE_CLASS;
-import static com.sanluan.common.constants.FreeMakerConstants.METHOD_BASE_PACKAGE;
 import static com.sanluan.common.constants.FreeMakerConstants.METHOD_CUT_STRING;
 import static com.sanluan.common.constants.FreeMakerConstants.METHOD_PREFIX;
 
@@ -25,7 +23,6 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
 
 import com.sanluan.common.tools.MyClassUtils;
-import com.sanluan.logic.component.NoCacheDirective;
 
 import freemarker.template.SimpleHash;
 import freemarker.template.TemplateModelException;
@@ -40,6 +37,8 @@ public class ErrorToNotFoundDispatcherServlet extends DispatcherServlet {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	private String directiveBasePackage;
+	private String methodBasePackage;
 
 	/*
 	 * (non-Javadoc)
@@ -71,7 +70,7 @@ public class ErrorToNotFoundDispatcherServlet extends DispatcherServlet {
 		Map freemarkerVariables = new HashMap();
 
 		StringBuffer directives = new StringBuffer();
-		List<Class<?>> directiveClasses = MyClassUtils.getAllAssignedClass(DIRECTIVE_BASE_CLASS, DIRECTIVE_BASE_PACKAGE);
+		List<Class<?>> directiveClasses = MyClassUtils.getAllAssignedClass(DIRECTIVE_BASE_CLASS, directiveBasePackage);
 		for (Class<?> c : directiveClasses) {
 			String directiveName = StringUtils.uncapitalize(c.getSimpleName());
 			directiveName = DIRECTIVE_PREFIX + directiveName.substring(0, directiveName.indexOf(DIRECTIVE_CUT_STRING));
@@ -84,7 +83,7 @@ public class ErrorToNotFoundDispatcherServlet extends DispatcherServlet {
 			directives.append(",");
 		directives.append(CONTEXT_NOCACHE);
 
-		List<Class<?>> methodClasses = MyClassUtils.getAllAssignedClass(METHOD_BASE_CLASS, METHOD_BASE_PACKAGE);
+		List<Class<?>> methodClasses = MyClassUtils.getAllAssignedClass(METHOD_BASE_CLASS, methodBasePackage);
 		StringBuffer methods = new StringBuffer();
 		for (Class<?> c : methodClasses) {
 			String methodName = StringUtils.uncapitalize(c.getSimpleName());
@@ -96,7 +95,6 @@ public class ErrorToNotFoundDispatcherServlet extends DispatcherServlet {
 		}
 
 		freemarkerVariables.put(CONTEXT_BASE, getServletContext().getContextPath());
-		freemarkerVariables.put(CONTEXT_NOCACHE, getWebApplicationContext().getBean(NoCacheDirective.class));
 
 		try {
 			freeMarkerConfigurer.getConfiguration().setAllSharedVariables(
@@ -105,5 +103,20 @@ public class ErrorToNotFoundDispatcherServlet extends DispatcherServlet {
 					+ methodClasses.size() + " methods created:[" + methods.toString() + "]");
 		} catch (TemplateModelException e) {
 		}
+	}
+
+	/**
+	 * @param directiveBasePackage
+	 *            the directiveBasePackage to set
+	 */
+	public void setDirectiveBasePackage(String directiveBasePackage) {
+		this.directiveBasePackage = directiveBasePackage;
+	}
+
+	/**
+	 * @param methodBasePackage the methodBasePackage to set
+	 */
+	public void setMethodBasePackage(String methodBasePackage) {
+		this.methodBasePackage = methodBasePackage;
 	}
 }

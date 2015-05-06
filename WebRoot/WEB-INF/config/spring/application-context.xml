@@ -43,7 +43,7 @@
 				<prop key="hibernate.cache.provider_configuration_file_resource_path">${hibernate.cache.provider_configuration_file_resource_path}</prop><!-- -->
 			</props>
 		</property>
-		<property name="packagesToScan" value="com.sanluan.entities"/>
+		<property name="packagesToScan" value="com.sanluan.cms.entities"/>
 	</bean>
 	<bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
 		<property name="cacheSeconds" value="0"/>
@@ -53,7 +53,7 @@
 			</list>
 		</property>
 	</bean>
-	<bean id="mailComponent" class="com.sanluan.logic.component.MailComponent">
+	<bean id="mailComponent" class="com.sanluan.cms.logic.component.MailComponent">
 		<property name="fromAddress">
 			<value>${mail.smtp.username}</value>
 		</property>
@@ -82,10 +82,10 @@
 		</property>
 	</bean>
 	<bean id="freeMarkerConfigurer" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
-		<property name="templateLoaderPath" value="/WEB-INF/"/>
+		<property name="templateLoaderPath" value="/WEB-INF/template"/>
 		<property name="freemarkerSettings">
 			<props>
-				<prop key="template_update_delay">600</prop>
+				<prop key="template_update_delay">0</prop>
 				<prop key="defaultEncoding">UTF-8</prop>
 				<prop key="url_escaping_charset">UTF-8</prop>
 				<prop key="locale">zh_CN</prop>
@@ -94,9 +94,8 @@
 				<prop key="date_format">yyyy-MM-dd</prop>
 				<prop key="time_format">HH:mm:ss</prop>
 				<prop key="number_format">#</prop>
-				<prop key="auto_import">ftl/tools.ftl as t</prop>
-				<prop key="auto_include">ftl/vars.ftl</prop>
-				<prop key="template_exception_handler">ignore</prop>
+				<prop key="auto_import">/ftl/tools.ftl as t</prop>
+				<prop key="auto_include">/ftl/vars.ftl</prop>
 			</props>
 		</property>
 	</bean>
@@ -108,7 +107,7 @@
 	</bean>
 	<bean id="mappingJackson2HttpMessageConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>
 	<context:annotation-config/>
-	<context:component-scan base-package="com.sanluan"/>
+	<context:component-scan base-package="com.sanluan.cms"/>
 	<task:annotation-driven/>
 	<tx:annotation-driven transaction-manager="transactionManager"/>
 </beans>

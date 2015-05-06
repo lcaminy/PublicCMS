@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.time.DateUtils;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -36,6 +37,9 @@ public abstract class BaseDao<E> {
 		return new Date();
 	}
 
+	public Date tomorrow(Date date){
+		return DateUtils.addDays(date, 1);
+	}
 	public static boolean notEmpty(String var) {
 		return StringUtils.isNoneBlank(var);
 	}

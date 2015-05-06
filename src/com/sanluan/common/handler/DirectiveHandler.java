@@ -105,7 +105,7 @@ public class DirectiveHandler {
 	 * @throws TemplateException
 	 */
 	public int getPageNo() throws TemplateException {
-		Integer pageNo = getInt("pageNo");
+		Integer pageNo = getInteger("pageNo");
 		if (null == pageNo)
 			pageNo = 1;
 		return pageNo;
@@ -126,7 +126,7 @@ public class DirectiveHandler {
 	 * @throws TemplateException
 	 */
 	public int getCount(int defaultValue) throws TemplateException {
-		Integer count = getInt("count");
+		Integer count = getInteger("count");
 		if (null == count)
 			count = defaultValue;
 		return count;
@@ -138,7 +138,7 @@ public class DirectiveHandler {
 	 * @throws TemplateException
 	 */
 	public Integer getMaxResults() throws TemplateException {
-		Integer max = getInt("max");
+		Integer max = getInteger("max");
 		return max;
 	}
 
@@ -212,7 +212,7 @@ public class DirectiveHandler {
 	 * @return
 	 * @throws TemplateException
 	 */
-	public Integer getInt(String name) throws TemplateException {
+	public Integer getInteger(String name) throws TemplateException {
 		TemplateModel model = parameters.get(name);
 		if (null == model) {
 			return null;
@@ -268,7 +268,7 @@ public class DirectiveHandler {
 	 * @return
 	 * @throws TemplateException
 	 */
-	public Integer[] getIntArray(String name) throws TemplateException {
+	public Integer[] getIntegerArray(String name) throws TemplateException {
 		String[] arr = getStringArray(name);
 		if (null != arr) {
 			Integer[] ids = new Integer[arr.length];
@@ -330,7 +330,7 @@ public class DirectiveHandler {
 	 * @return
 	 * @throws TemplateException
 	 */
-	public Boolean getBool(String name) throws TemplateException {
+	public Boolean getBoolean(String name) throws TemplateException {
 		TemplateModel model = parameters.get(name);
 		if (null == model) {
 			return null;

@@ -12,14 +12,12 @@ import static com.sanluan.common.constants.CommonConstants.USERNAME_PATTERN;
 import static org.springframework.web.servlet.view.UrlBasedViewResolver.FORWARD_URL_PREFIX;
 import static org.springframework.web.servlet.view.UrlBasedViewResolver.REDIRECT_URL_PREFIX;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.ui.ModelMap;
-
-import com.sanluan.entities.system.SystemUser;
-
 /**
  * @author zhangxd
  * 
@@ -36,83 +34,87 @@ public abstract class BaseController {
 	protected static final String PAGE_SUFFIX = REQUEST_SUFFIX;
 	protected static final String DO_SUFFIX = FORM_SUFFIX;
 	protected static final String JSON_SUFFIX = AJAX_SUFFIX;
+	
+	public static Map<String,Object> getMap(){
+		return new HashMap<String,Object>();
+	}
 
-	protected boolean virifyNotEmpty(String field, String value, ModelMap model) {
+	protected boolean virifyNotEmpty(String field, String value, Map<String,Object> model) {
 		if (StringUtils.isEmpty(value)) {
-			model.addAttribute(ERROR, "verify.notEmpty." + field);
+			model.put(ERROR, "verify.notEmpty." + field);
 			return true;
 		}
 		return false;
 	}
 	
-	protected boolean virifyCustom(String field, boolean value, ModelMap model) {
+	protected boolean virifyCustom(String field, boolean value, Map<String,Object> model) {
 		if (value) {
-			model.addAttribute(ERROR, "verify.custom." + field);
+			model.put(ERROR, "verify.custom." + field);
 			return true;
 		}
 		return false;
 	}
 
-	protected boolean virifyNotEmpty(String field, Object value, ModelMap model) {
+	protected boolean virifyNotEmpty(String field, Object value, Map<String,Object> model) {
 		if (null == value) {
-			model.addAttribute(ERROR, "verify.notEmpty." + field);
+			model.put(ERROR, "verify.notEmpty." + field);
 			return true;
 		}
 		return false;
 	}
 
-	protected boolean virifyNotGreaterThen(String field, Integer value, int specific, ModelMap model) {
+	protected boolean virifyNotGreaterThen(String field, Integer value, int specific, Map<String,Object> model) {
 		if (null == value) {
-			model.addAttribute(ERROR, "verify.notEmpty." + field);
+			model.put(ERROR, "verify.notEmpty." + field);
 			return true;
 		} else if (value <= specific) {
-			model.addAttribute(ERROR, "verify.notGreaterThen." + field);
+			model.put(ERROR, "verify.notGreaterThen." + field);
 			return true;
 		}
 		return false;
 	}
 
-	protected boolean virifyNotLongThen(String field, String value, int specific, ModelMap model) {
+	protected boolean virifyNotLongThen(String field, String value, int specific, Map<String,Object> model) {
 		if (null == value) {
-			model.addAttribute(ERROR, "verify.notEmpty." + field);
+			model.put(ERROR, "verify.notEmpty." + field);
 			return true;
 		} else if (value.length() > specific) {
-			model.addAttribute(ERROR, "verify.notLongThen." + field);
+			model.put(ERROR, "verify.notLongThen." + field);
 			return true;
 		}
 		return false;
 	}
 
-	protected boolean virifyNotLessThen(String field, String value, int specific, ModelMap model) {
+	protected boolean virifyNotLessThen(String field, String value, int specific, Map<String,Object> model) {
 		if (null == value) {
-			model.addAttribute(ERROR, "verify.notEmpty." + field);
+			model.put(ERROR, "verify.notEmpty." + field);
 			return true;
 		} else if (value.length() < specific) {
-			model.addAttribute(ERROR, "verify.notLessThen." + field);
+			model.put(ERROR, "verify.notLessThen." + field);
 			return true;
 		}
 		return false;
 	}
 
-	protected boolean virifyNotUserName(String field, String value, ModelMap model) {
+	protected boolean virifyNotUserName(String field, String value, Map<String,Object> model) {
 		if (virifyNotUserName(value)) {
-			model.addAttribute(ERROR, "verify.notUserName." + field);
+			model.put(ERROR, "verify.notUserName." + field);
 			return true;
 		}
 		return false;
 	}
 
-	protected boolean virifyNotNickName(String field, String value, ModelMap model) {
+	protected boolean virifyNotNickName(String field, String value, Map<String,Object> model) {
 		if (virifyNotNickName(value)) {
-			model.addAttribute(ERROR, "verify.notNickName." + field);
+			model.put(ERROR, "verify.notNickName." + field);
 			return true;
 		}
 		return false;
 	}
 
-	protected boolean virifyNotMobile(String field, String value, ModelMap model) {
+	protected boolean virifyNotMobile(String field, String value, Map<String,Object> model) {
 		if (virifyNotMobile(value)) {
-			model.addAttribute(ERROR, "verify.notMobile." + field);
+			model.put(ERROR, "verify.notMobile." + field);
 			return true;
 		}
 		return false;
@@ -145,9 +147,9 @@ public abstract class BaseController {
 		return false;
 	}
 
-	protected boolean virifyNotEMail(String field, String value, ModelMap model) {
+	protected boolean virifyNotEMail(String field, String value, Map<String,Object> model) {
 		if (virifyNotEMail(value)) {
-			model.addAttribute(ERROR, "verify.notEmail." + field);
+			model.put(ERROR, "verify.notEmail." + field);
 			return true;
 		}
 		return false;
@@ -171,73 +173,41 @@ public abstract class BaseController {
 		return false;
 	}
 
-	protected boolean virifyNotEMailAndMobile(String field, String value, ModelMap model) {
+	protected boolean virifyNotEMailAndMobile(String field, String value, Map<String,Object> model) {
 		if (virifyNotEMail(value) && virifyNotMobile(value)) {
-			model.addAttribute(ERROR, "verify.notEmailAndMobile." + field);
+			model.put(ERROR, "verify.notEmailAndMobile." + field);
 			return true;
 		}
 		return false;
 	}
 
-	protected boolean virifyNotExist(String field, Object value, ModelMap model) {
+	protected boolean virifyNotExist(String field, Object value, Map<String,Object> model) {
 		if (null == value) {
-			model.addAttribute(ERROR, "verify.notExist." + field);
+			model.put(ERROR, "verify.notExist." + field);
 			return true;
 		}
 		return false;
 	}
 
-	protected boolean virifyNotAdmin(SystemUser user, ModelMap model) {
-		if (!user.isSuperuserAccess()) {
-			model.addAttribute(ERROR, "verify.user.notAdmin");
-			return true;
-		}
-		return false;
-	}
-
-	protected boolean virifyNotEnablie(SystemUser user, ModelMap model) {
-		if (user.isDisable()) {
-			model.addAttribute(ERROR, "verify.user.notEnablie");
-			return true;
-		}
-		return false;
-	}
-
-	protected boolean virifyHasExist(String field, Object value, ModelMap model) {
+	protected boolean virifyHasExist(String field, Object value, Map<String,Object> model) {
 		if (null != value) {
-			model.addAttribute(ERROR, "verify.hasExist." + field);
+			model.put(ERROR, "verify.hasExist." + field);
 			return true;
 		}
 		return false;
 	}
 
-	protected boolean virifyNotEquals(String field, String value1, String value2, ModelMap model) {
+	protected boolean virifyNotEquals(String field, String value1, String value2, Map<String,Object> model) {
 		if (null != value1 && !value1.equals(value2)) {
-			model.addAttribute(ERROR, "verify.notEquals." + field);
+			model.put(ERROR, "verify.notEquals." + field);
 			return true;
 		}
 		return false;
 	}
 
-	protected boolean virifyNotEquals(String field, Integer value1, Integer value2, ModelMap model) {
+	protected boolean virifyNotEquals(String field, Integer value1, Integer value2, Map<String,Object> model) {
 		if (null != value1 && !value1.equals(value2)) {
-			model.addAttribute(ERROR, "verify.notEquals." + field);
-			return true;
-		}
-		return false;
-	}
-
-	protected boolean virifyNotEquals(String field, SystemUser user, Integer value2, ModelMap model) {
-		if (null != user && !user.getId().equals(value2)) {
-			model.addAttribute(ERROR, "verify.notEquals." + field);
-			return true;
-		}
-		return false;
-	}
-	
-	protected boolean virifyEquals(String field, SystemUser user, Integer value2, ModelMap model) {
-		if (null != user && user.getId().equals(value2)) {
-			model.addAttribute(ERROR, "verify.notEquals." + field);
+			model.put(ERROR, "verify.notEquals." + field);
 			return true;
 		}
 		return false;

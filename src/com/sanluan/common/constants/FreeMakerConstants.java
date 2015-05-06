@@ -10,8 +10,8 @@ import com.sanluan.common.base.BaseMethod;
  * 
  */
 public class FreeMakerConstants {
-	public static final String TEMPLATE_BASE_PREFIX = "/WEB-INF/";
-	public static final String TEMPLATE_SITES_PREFIX = "template/";
+	public static final String TEMPLATE_BASE_PREFIX = "/WEB-INF/template/";
+	public static final String TEMPLATE_INDEX_PREFIX = "web/";
 	public static final String TEMPLATE_SUFFIX = REQUEST_SUFFIX;
 
 	public static final String CONTEXT_BASE = "base";
@@ -24,10 +24,8 @@ public class FreeMakerConstants {
 	public static final String METHOD_PREFIX = "m_";
 
 	public static final Class<BaseDirective> DIRECTIVE_BASE_CLASS = BaseDirective.class;
-	public static final String DIRECTIVE_BASE_PACKAGE = "com.sanluan.views.directive";
 	public static final String DIRECTIVE_CUT_STRING = "Directive";
 
 	public static final Class<BaseMethod> METHOD_BASE_CLASS = BaseMethod.class;
-	public static final String METHOD_BASE_PACKAGE = "com.sanluan.views.method";
 	public static final String METHOD_CUT_STRING = "Method";
 }

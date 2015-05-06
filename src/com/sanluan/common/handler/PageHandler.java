@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * @author zhangxd
  * 
- * @param 
+ * @param
  */
 public class PageHandler implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
@@ -55,6 +55,10 @@ public class PageHandler implements java.io.Serializable {
 
 	public int getFirstResult() {
 		return (pageNo - 1) * pageSize;
+	}
+
+	public int getLastResult() {
+		return pageNo * pageSize > totalCount ? pageNo * pageSize : totalCount;
 	}
 
 	/**

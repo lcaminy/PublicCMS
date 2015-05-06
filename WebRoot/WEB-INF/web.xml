@@ -2,7 +2,7 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee"
 	xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 	id="WebApp_ID" version="2.5">
-	<display-name>wap_admin</display-name>
+	<display-name>cms_admin</display-name>
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>/WEB-INF/config/spring/*-context.xml</param-value>
@@ -34,28 +34,19 @@
 			<param-name>contextConfigLocation</param-name>
 			<param-value>/WEB-INF/config/spring/servlet-admin.xml</param-value>
 		</init-param>
-		<load-on-startup>1</load-on-startup>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>AdminServlet</servlet-name>
-		<url-pattern>/admin/*</url-pattern>
-	</servlet-mapping>
-	<servlet>
-		<servlet-name>WebServlet</servlet-name>
-		<servlet-class>com.sanluan.common.servlet.ErrorToNotFoundDispatcherServlet</servlet-class>
 		<init-param>
-			<param-name>contextConfigLocation</param-name>
-			<param-value>/WEB-INF/config/spring/servlet-web.xml</param-value>
+			<param-name>directiveBasePackage</param-name>
+			<param-value>com.sanluan.cms.views.directive</param-value>
+		</init-param>
+		<init-param>
+			<param-name>methodBasePackage</param-name>
+			<param-value>com.sanluan.cms.views.method</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>WebServlet</servlet-name>
+		<servlet-name>AdminServlet</servlet-name>
 		<url-pattern>/*</url-pattern>
-	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>WebServlet</servlet-name>
-		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>

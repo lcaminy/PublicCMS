@@ -5,7 +5,7 @@
 	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd http://www.springframework.org/schema/mvc  
         http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 	<context:annotation-config/>
-	<context:component-scan base-package="com.sanluan.views.controller.index"/>
+	<context:component-scan base-package="com.sanluan.cms.web.views.controller"/>
 	<mvc:annotation-driven>
 		<mvc:message-converters>
 			<ref bean="mappingJackson2HttpMessageConverter"/>
@@ -24,7 +24,7 @@
 		</property>
 	</bean>
 	<bean id="cacheComponent" class="com.sanluan.logic.component.CacheComponent">
-		<property name="cacheFileDirectory" value="./cacheHtmlFile/"/>
+		<property name="cacheFileDirectory" value="../cacheHtmlFile/"/>
 		<property name="cachePaths">
 			<map>
 				<entry key="60">
@@ -40,7 +40,7 @@
 		</property>
 	</bean>
 	<bean id="freemarkerViewResolver" class="com.sanluan.common.servlet.view.FreeMarkerViewResolver">
-		<property name="prefix" value="/template/"/>
+		<property name="prefix" value="/index/"/>
 		<property name="suffix" value=".html"/>
 		<property name="contentType" value="text/html;charset=UTF-8"/>
 	</bean>

@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.web.servlet.view.freemarker.FreeMarkerView;
 
-import com.sanluan.common.tools.RequestUtils;
+import com.sanluan.cms.common.tools.UserUtils;
 
 import freemarker.ext.servlet.IncludePage;
 
@@ -32,8 +32,8 @@ public class InitializeFreeMarkerView extends FreeMarkerView {
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public void exposeHelpers(Map model, HttpServletRequest request) throws Exception {
 		super.exposeHelpers(model, request);
-		model.put(CONTEXT_USER, RequestUtils.getUserFromSession(request));
-		model.put(CONTEXT_ADMIN, RequestUtils.getAdminFromSession(request));
+		model.put(CONTEXT_USER, UserUtils.getUserFromSession(request));
+		model.put(CONTEXT_ADMIN, UserUtils.getAdminFromSession(request));
 		Enumeration<String> parameters = request.getParameterNames();
 		while (parameters.hasMoreElements()) {
 			String paramterName = parameters.nextElement();

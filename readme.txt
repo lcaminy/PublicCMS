@@ -23,7 +23,6 @@ read me
 				spring		框架配置目录
 				dbconfig.properties		数据库配置文件
 			ftl			freemaker模板宏定义文件目录
-			include_page	模板中用于被包含且不希望用户访问文件目录
 			language	语言文件目录
 			lib			类库目录
 			template	模板文件目录
@@ -37,6 +36,7 @@ read me
 		.pagination		分页封装类包
 		.resolver		视图解析器类包
 		.servlet		Servlet包
+		.source		源码工具包
 		.tools			工具类包
 	.entities	实体类包
 		.base		实体基类包
@@ -62,12 +62,9 @@ read me
 
 9. 开发流程：
 	1. 在开发工具中使用hibernate工具生成实体类，修改数据库配置文件
-	2. 编写实体操作dao类与service类，编写过程中尽可能多的将实体中的参数编写为查询条件
-	3. 编写freemaker自定义指令，实现对实体list和单个实体的查询
-	4. 编写controller对实体的增加，修改，删除以及较为复杂的如登录等逻辑操作响应方法
-	5. 将所有页面UI放到模板目录，资源文件放到资源文件目录.启动并测试是否可访问，并调整UI文件中的资源文件、链接路径等，修改完成后可以将所有UI文件视为模板文件
-	6. 使用freemaker标签实现所有的展现逻辑
-	7. 根据实际需要调整模板中的表单，功能按钮与controller相适应
+	2. 对实体类属性使用com.sanluan.common.source.entity.MyColumn注解类标记字段类型【condition：是否用于查询条件，like：查询条件是否为like匹配，or：查询条件是否为or逻辑，name：字段名，当or为true时，相同name 的字段为同一组or条件，title：字段真实含义】
+	3. 使用com.sanluan.common.source.Maker工具类 生成自定义指令，Controller，Service，Dao，Html
+	4. 根据实际业务调整代码中的逻辑
 	
 10. 其他规范：
 	页面文件使用.html做后缀

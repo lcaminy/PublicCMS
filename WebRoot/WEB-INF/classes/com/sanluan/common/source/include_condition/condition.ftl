@@ -1,0 +1,1 @@
+<#list conditionList as a><#if "Date"=a.type>${a.type} start${a.name?cap_first}, ${a.type} end${a.name?cap_first}, <#else>${a.type} ${a.name}, </#if></#list>int pageNo, int pageSize
