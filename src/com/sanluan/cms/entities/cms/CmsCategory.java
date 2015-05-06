@@ -46,6 +46,9 @@ public class CmsCategory implements java.io.Serializable {
 	private String contentPath1;
 	@MyColumn(title = "每页数据")
 	private Integer pageSize;
+	private boolean userParentCategoryExtend;
+	private boolean userParentContentExtend;
+	private boolean userParentChapterExtend;
 	@MyColumn(title = "是否删除", condition = true)
 	private boolean isDisable;
 	@MyColumn(title = "内容数")
@@ -70,18 +73,24 @@ public class CmsCategory implements java.io.Serializable {
 	public CmsCategory() {
 	}
 
-	public CmsCategory(int siteId, String name, String path, String listPath, String contentPath, boolean isDisable, int contents) {
+	public CmsCategory(int siteId, String name, String path, String listPath, String contentPath,
+			boolean userParentCategoryExtend, boolean userParentContentExtend, boolean userParentChapterExtend,
+			boolean isDisable, int contents) {
 		this.siteId = siteId;
 		this.name = name;
 		this.path = path;
 		this.listPath = listPath;
 		this.contentPath = contentPath;
+		this.userParentCategoryExtend = userParentCategoryExtend;
+		this.userParentContentExtend = userParentContentExtend;
+		this.userParentChapterExtend = userParentChapterExtend;
 		this.isDisable = isDisable;
 		this.contents = contents;
 	}
 
 	public CmsCategory(int siteId, String name, Integer parentId, String childIds, String englishName, String path,
 			String listPath, String path1, String listPath1, String contentPath, String contentPath1, Integer pageSize,
+			boolean userParentCategoryExtend, boolean userParentContentExtend, boolean userParentChapterExtend,
 			boolean isDisable, int contents, String extend1, String extend2, String extend3, String extend4,
 			Integer extendNumber1, Integer extendNumber2, Integer extendNumber3, Integer extendNumber4) {
 		this.siteId = siteId;
@@ -96,6 +105,9 @@ public class CmsCategory implements java.io.Serializable {
 		this.contentPath = contentPath;
 		this.contentPath1 = contentPath1;
 		this.pageSize = pageSize;
+		this.userParentCategoryExtend = userParentCategoryExtend;
+		this.userParentContentExtend = userParentContentExtend;
+		this.userParentChapterExtend = userParentChapterExtend;
 		this.isDisable = isDisable;
 		this.contents = contents;
 		this.extend1 = extend1;
@@ -225,6 +237,33 @@ public class CmsCategory implements java.io.Serializable {
 
 	public void setPageSize(Integer pageSize) {
 		this.pageSize = pageSize;
+	}
+
+	@Column(name = "user_parent_category_extend", nullable = false)
+	public boolean isUserParentCategoryExtend() {
+		return this.userParentCategoryExtend;
+	}
+
+	public void setUserParentCategoryExtend(boolean userParentCategoryExtend) {
+		this.userParentCategoryExtend = userParentCategoryExtend;
+	}
+
+	@Column(name = "user_parent_content_extend", nullable = false)
+	public boolean isUserParentContentExtend() {
+		return this.userParentContentExtend;
+	}
+
+	public void setUserParentContentExtend(boolean userParentContentExtend) {
+		this.userParentContentExtend = userParentContentExtend;
+	}
+
+	@Column(name = "user_parent_chapter_extend", nullable = false)
+	public boolean isUserParentChapterExtend() {
+		return this.userParentChapterExtend;
+	}
+
+	public void setUserParentChapterExtend(boolean userParentChapterExtend) {
+		this.userParentChapterExtend = userParentChapterExtend;
 	}
 
 	@Column(name = "is_disable", nullable = false)
