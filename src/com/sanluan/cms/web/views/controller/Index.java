@@ -53,7 +53,7 @@ public class Index extends BaseController {
 	 * 二级页面首页映射
 	 * 
 	 */
-	@RequestMapping(value = { "{dir}", DELIMITER + "{dir}" + DELIMITER })
+	@RequestMapping(value = { "{dir}", "{dir}" + DELIMITER })
 	public String index(@PathVariable String dir, HttpServletRequest request, HttpServletResponse response, ModelMap model) {
 		return page(dir + DELIMITER + TEMPLATE_INDEX, request, response, model);
 	}
