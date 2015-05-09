@@ -3,7 +3,6 @@ package ${base}.${directivePack};
 // Generated ${.now} by SourceMaker
 
 import java.io.IOException;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

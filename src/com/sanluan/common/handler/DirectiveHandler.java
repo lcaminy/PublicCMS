@@ -40,7 +40,7 @@ public class DirectiveHandler {
 	}
 
 	/**
-	 * 导出所有变量
+	 * 渲染
 	 * 
 	 * @param templateDirectiveBody
 	 * @throws IOException
