@@ -24,9 +24,7 @@ public class MemoryDirective extends BaseDirective {
 		map.put("free", Runtime.getRuntime().freeMemory());
 		map.put("total", Runtime.getRuntime().totalMemory());
 		map.put("max", Runtime.getRuntime().maxMemory());
-		
-		Map<String, Object> model = getMap();
-		model.put("bean", map);
-		handler.export(model, map);
+		handler.put("bean", map);
+		handler.render();
 	}
 }

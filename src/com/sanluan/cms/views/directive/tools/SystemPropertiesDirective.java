@@ -2,7 +2,6 @@ package com.sanluan.cms.views.directive.tools;
 
 import java.io.IOException;
 import java.util.Iterator;
-import java.util.Map;
 import java.util.Properties;
 
 import org.springframework.stereotype.Component;
@@ -52,15 +51,12 @@ public class SystemPropertiesDirective extends BaseDirective {
 	 */
 	@Override
 	public void execute(DirectiveHandler handler) throws TemplateException, IOException {
-		Map<String, Object> map = getMap();
 		Properties props = System.getProperties();
 		Iterator<Object> keysIterator = props.keySet().iterator();
 		while (keysIterator.hasNext()) {
 			Object key = keysIterator.next();
-			map.put(key.toString(), props.get(key));
+			handler.put(key.toString(), props.get(key));
 		}
-		Map<String, Object> model = getMap();
-		model.put("bean", map);
-		handler.export(model, map);
+		handler.render();
 	}
 }

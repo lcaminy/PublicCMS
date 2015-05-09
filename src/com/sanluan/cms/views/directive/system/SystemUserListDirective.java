@@ -24,7 +24,7 @@ public class SystemUserListDirective extends BaseDirective {
 		PageHandler page = service.getPage(handler.getString("name"), handler.getBoolean("superuserAccess"),
 				handler.getBoolean("disable"), handler.getDate("startDateRegistered"), handler.getDate("endDateRegistered"),
 				handler.getPageNo(), handler.getCount());
-		handler.export(page);
+		handler.render(page);
 	}
 
 	@Autowired

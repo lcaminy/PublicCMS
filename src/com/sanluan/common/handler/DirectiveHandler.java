@@ -30,6 +30,7 @@ public class DirectiveHandler {
 	private Environment environment;
 	private Map<String, TemplateModel> parameters;
 	private TemplateDirectiveBody templateDirectiveBody;
+	private Map<String, Object> map = new HashMap<String, Object>();
 
 	public DirectiveHandler(Environment environment, Map<String, TemplateModel> parameters,
 			TemplateDirectiveBody templateDirectiveBody) {
@@ -45,25 +46,24 @@ public class DirectiveHandler {
 	 * @throws IOException
 	 * @throws TemplateException
 	 */
-	public void export(Map<String, Object> map) throws IOException, TemplateException {
-		Map<String, TemplateModel> reduceMap = put(map);
+	public void render() throws IOException, TemplateException {
+		Map<String, TemplateModel> reduceMap = reduce();
 		if (null != templateDirectiveBody)
 			templateDirectiveBody.render(environment.getOut());
 		reduce(reduceMap);
 	}
 
 	/**
-	 * 导出所有变量
+	 * 渲染
 	 * 
 	 * @param templateDirectiveBody
 	 * @throws IOException
 	 * @throws TemplateException
 	 */
-	public void export(PageHandler page) throws IOException, TemplateException {
-		Map<String, TemplateModel> reduceMap = put(getMap(page));
-		if (null != templateDirectiveBody)
-			templateDirectiveBody.render(environment.getOut());
-		reduce(reduceMap);
+	public void render(PageHandler page) throws IOException, TemplateException {
+		map.put("page", page);
+		map.put("list", page.getList());
+		render();
 	}
 
 	/**
@@ -74,9 +74,9 @@ public class DirectiveHandler {
 	 * @throws IOException
 	 * @throws TemplateException
 	 */
-	public void export(Map<String, Object> map, Object notEmptyObject) throws IOException, TemplateException {
+	public void render(Object notEmptyObject) throws IOException, TemplateException {
 		if (null != notEmptyObject) {
-			export(map);
+			render();
 		}
 	}
 
@@ -89,13 +89,6 @@ public class DirectiveHandler {
 	 */
 	public void print(String str) throws IOException, TemplateException {
 		environment.getOut().append(str);
-	}
-
-	private Map<String, Object> getMap(PageHandler page) {
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("page", page);
-		map.put("list", page.getList());
-		return map;
 	}
 
 	/**
@@ -141,11 +134,15 @@ public class DirectiveHandler {
 		return max;
 	}
 
+	public void put(String key, Object value) {
+		map.put(key, value);
+	}
+
 	/**
 	 * @param key
 	 * @throws TemplateModelException
 	 */
-	public Map<String, TemplateModel> put(Map<String, Object> map) throws TemplateModelException {
+	private Map<String, TemplateModel> reduce() throws TemplateModelException {
 		Map<String, TemplateModel> reduceMap = new HashMap<String, TemplateModel>();
 		for (String key : map.keySet()) {
 			String realKey = TAG_PREFIX + key;
@@ -288,7 +285,7 @@ public class DirectiveHandler {
 			return null;
 		}
 	}
-	
+
 	/**
 	 * @param name
 	 * 

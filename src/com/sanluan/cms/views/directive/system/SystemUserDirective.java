@@ -1,7 +1,6 @@
 package com.sanluan.cms.views.directive.system;
 
 import java.io.IOException;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -24,12 +23,11 @@ public class SystemUserDirective extends BaseDirective {
 	public void execute(DirectiveHandler handler) throws TemplateException, IOException {
 		Integer id = handler.getInteger("id");
 		if (null != id) {
-			Map<String, Object> map = getMap();
 			SystemUser bean = service.getEntity(id);
 			bean.setPassword(null);
 			bean.setAuthToken(null);
-			map.put("bean", bean);
-			handler.export(map, bean);
+			handler.put("bean", bean);
+			handler.render();
 		}
 	}
 

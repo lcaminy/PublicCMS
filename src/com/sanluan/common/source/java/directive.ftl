@@ -24,10 +24,9 @@ public class ${entityName}Directive extends BaseDirective {
 	public void execute(DirectiveHandler handler) throws TemplateException, IOException {
 		Integer id = handler.getInteger("id");
 		if (null != id) {
-			Map<String, Object> map = getMap();
 			${entityName} bean = service.getEntity(id);
-			map.put("bean", bean);
-			handler.export(map, bean);
+			handler.put("bean", bean);
+			handler.render();
 		}
 	}
 
