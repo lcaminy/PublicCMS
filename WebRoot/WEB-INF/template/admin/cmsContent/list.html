@@ -7,54 +7,7 @@
 	<div class="searchBar">
 		<table class="searchContent">
 			<tr>
-				<td>
-					扩展数字字段3：<input type="text" name="queryExtendNumber3" value="${queryExtendNumber3!}" />
-				</td>
-				<td>
-					扩展数字字段4：<input type="text" name="queryExtendNumber4" value="${queryExtendNumber4!}" />
-				</td>
-				<td>
-					状态：<input type="text" name="queryStatus" value="${queryStatus!}" />
-				</td>
-				<td>
-					扩展字段1：<input type="text" name="queryExtend1" value="${queryExtend1!}" />
-				</td>
-				<td>
-					分类：<input type="text" name="queryCategoryId" value="${queryCategoryId!}" />
-				</td>
-				<td>
-					扩展字段3：<input type="text" name="queryExtend3" value="${queryExtend3!}" />
-				</td>
-				<td>
-					扩展字段2：<input type="text" name="queryExtend2" value="${queryExtend2!}" />
-				</td>
-				<td>
-					扩展字段4：<input type="text" name="queryExtend4" value="${queryExtend4!}" />
-				</td>
-				<td>
-					已删除：<input type="text" name="queryIsDisable" value="${queryIsDisable!}" />
-				</td>
-				<td>
-					模型：<input type="text" name="queryModelId" value="${queryModelId!}" />
-				</td>
-				<td>
-					标题：<input type="text" name="queryTitle" value="${queryTitle!}" />
-				</td>
-				<td>
-					发布用户：<input type="text" name="queryUserId" value="${queryUserId!}" />
-				</td>
-				<td>
-					扩展数字字段2：<input type="text" name="queryExtendNumber2" value="${queryExtendNumber2!}" />
-				</td>
-				<td>
-					<label>发布日期：</label>
-					<input type="text" name="queryStartPublishDate" class="date" dateFmt="yyyy-MM-dd" maxDate="{%y}-%M-{%d}" value="${queryStartPublishDate!}" />
-					-
-					<input type="text" name="queryEndPublishDate" class="date" dateFmt="yyyy-MM-dd" maxDate="{%y}-%M-{%d}" value="${queryEndPublishDate!}" />
-				</td>
-				<td>
-					扩展数字字段1：<input type="text" name="queryExtendNumber1" value="${queryExtendNumber1!}" />
-				</td>
+				
 			</tr>
 		</table>
 		<#include "../include_page/searchBar.html"/>
@@ -106,9 +59,9 @@
 			<tr target="sid" rel="${a.id}">
 				<td>${a.title!}</td>
 				<td>${a.userId!}</td>
-				<td>${a.categoryId!}</td>
+				<td><@d_cmsCategory id =a.categoryId>${t_bean.name}</@d_cmsCategory></td>
 				<td>${a.modelId!}</td>
-				<td>${a.isCopied!}</td>
+				<td>${a.isCopied?string('是','否')}</td>
 				<td>${a.source!}</td>
 				<td>${a.author!}</td>
 				<td>${a.editor!}</td>

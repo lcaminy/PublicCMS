@@ -25,7 +25,7 @@ public class ShortMessageTemplateExceptionHandler implements TemplateExceptionHa
 	public void handleTemplateException(TemplateException templateexception, Environment environment, Writer writer)
 			throws TemplateException {
 		try {
-			writer.write("[ERROR: " + templateexception.getMessage() + "]");
+			writer.write("[SOME ERRORS OCCURRED！]");
 		} catch (IOException e) {
 		}
 	}
