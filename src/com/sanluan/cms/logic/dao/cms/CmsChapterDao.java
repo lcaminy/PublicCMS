@@ -2,7 +2,6 @@ package com.sanluan.cms.logic.dao.cms;
 
 // Generated 2015-5-8 16:50:23 by SourceMaker
 
-
 import org.springframework.stereotype.Repository;
 
 import com.sanluan.cms.entities.cms.CmsChapter;
@@ -12,7 +11,9 @@ import com.sanluan.common.handler.QueryHandler;
 
 @Repository
 public class CmsChapterDao extends BaseDao<CmsChapter> {
-	public PageHandler getPage(Integer extendNumber3, Integer extendNumber4, String extend1, String extend3, String image, String extend2, String extend4, Integer contentId, Integer parentId, String title, String description, Integer extendNumber2, Integer extendNumber1, int pageNo, int pageSize) {
+	public PageHandler getPage(Integer extendNumber3, Integer extendNumber4, String extend1, String extend3, Boolean image,
+			String extend2, String extend4, Integer contentId, Integer parentId, String title, Integer extendNumber2,
+			Integer extendNumber1, int pageNo, int pageSize) {
 		QueryHandler queryMaker = getQueryMaker("from CmsChapter bean");
 		if (notEmpty(extendNumber3)) {
 			queryMaker.condition("bean.extendNumber3 = :extendNumber3").setParameter("extendNumber3", extendNumber3);
@@ -27,7 +28,10 @@ public class CmsChapterDao extends BaseDao<CmsChapter> {
 			queryMaker.condition("bean.extend3 = :extend3").setParameter("extend3", extend3);
 		}
 		if (notEmpty(image)) {
-			queryMaker.condition("bean.image = :image").setParameter("image", image);
+			if (image)
+				queryMaker.condition("bean.image is not null");
+			else
+				queryMaker.condition("bean.image is null");
 		}
 		if (notEmpty(extend2)) {
 			queryMaker.condition("bean.extend2 = :extend2").setParameter("extend2", extend2);
@@ -42,10 +46,7 @@ public class CmsChapterDao extends BaseDao<CmsChapter> {
 			queryMaker.condition("bean.parentId = :parentId").setParameter("parentId", parentId);
 		}
 		if (notEmpty(title)) {
-			queryMaker.condition("bean.title = :title").setParameter("title", title);
-		}
-		if (notEmpty(description)) {
-			queryMaker.condition("bean.description = :description").setParameter("description", description);
+			queryMaker.condition("bean.title like :title").setParameter("title", like(title));
 		}
 		if (notEmpty(extendNumber2)) {
 			queryMaker.condition("bean.extendNumber2 = :extendNumber2").setParameter("extendNumber2", extendNumber2);

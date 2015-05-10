@@ -27,11 +27,11 @@ public class CmsChapter implements java.io.Serializable {
 	private int contentId;
 	@MyColumn(title = "父章节", condition = true)
 	private Integer parentId;
-	@MyColumn(title = "标题", condition = true)
+	@MyColumn(title = "标题", condition = true, like = true)
 	private String title;
 	@MyColumn(title = "图片", condition = true)
 	private String image;
-	@MyColumn(title = "描述", condition = true)
+	@MyColumn(title = "描述")
 	private String description;
 	@MyColumn(title = "扩展字段1", condition = true)
 	private String extend1;

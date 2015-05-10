@@ -351,6 +351,7 @@ menu项:
 -- CmsModel begin 2015-5-10 17:54:56---
 字段列表：
 	name:名称
+	chapterName:章节名称
 	templatePath:模板路径
 	templatePath1:模板路径1
 	isDisable:已删除
