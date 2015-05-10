@@ -22,7 +22,8 @@
 			</list>
 		</property>
 	</bean>
-	<bean id="freemarkerViewResolver" class="com.sanluan.common.servlet.view.FreeMarkerViewResolver">
+	<bean id="freemarkerViewResolver" class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
+		<property name="viewClass" value="com.sanluan.cms.common.servlet.view.InitializeFreeMarkerView"/>
 		<property name="prefix" value="/admin/"/>
 		<property name="suffix" value=".html"/>
 		<property name="contentType" value="text/html;charset=UTF-8"/>

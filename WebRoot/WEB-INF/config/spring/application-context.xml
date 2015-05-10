@@ -96,7 +96,7 @@
 				<prop key="number_format">#</prop>
 				<prop key="auto_import">/ftl/tools.ftl as t</prop>
 				<prop key="auto_include">/ftl/vars.ftl</prop>
-				<prop key="template_exception_handler">com.sanluan.common.servlet.view.ShortMessageTemplateExceptionHandler</prop>
+				<prop key="template_exception_handler">com.sanluan.common.handler.ShortMessageTemplateExceptionHandler</prop>
 			</props>
 		</property>
 	</bean>

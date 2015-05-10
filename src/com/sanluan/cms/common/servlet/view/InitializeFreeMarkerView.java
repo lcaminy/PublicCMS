@@ -1,4 +1,4 @@
-package com.sanluan.common.servlet.view;
+package com.sanluan.cms.common.servlet.view;
 
 import static com.sanluan.common.constants.FreeMakerConstants.CONTEXT_INCLUDE;
 

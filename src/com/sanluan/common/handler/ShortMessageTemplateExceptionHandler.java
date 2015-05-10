@@ -1,4 +1,4 @@
-package com.sanluan.common.servlet.view;
+package com.sanluan.common.handler;
 
 import java.io.IOException;
 import java.io.Writer;
