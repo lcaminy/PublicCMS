@@ -25,6 +25,8 @@ public class CmsModel implements java.io.Serializable {
 	private Integer id;
 	@MyColumn(title = "名称")
 	private String name;
+	@MyColumn(title = "章节模型名称")
+	private String chapterName;
 	@MyColumn(title = "模板路径")
 	private String templatePath;
 	@MyColumn(title = "模板路径1")
@@ -61,6 +63,15 @@ public class CmsModel implements java.io.Serializable {
 	@Column(name = "name", nullable = false, length = 200)
 	public String getName() {
 		return this.name;
+	}
+
+	public void setChapterName(String chapterName) {
+		this.chapterName = chapterName;
+	}
+
+	@Column(name = "chapter_name", nullable = false, length = 200)
+	public String getChapterName() {
+		return this.chapterName;
 	}
 
 	public void setName(String name) {
