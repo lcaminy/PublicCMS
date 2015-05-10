@@ -41,7 +41,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<#list t_list as a>
+			<#list t_page.list as a>
 			<tr target="sid" rel="${a.id}">
 				<td><#if a.userId??><@d_user id=a.userId>${t_bean.name}</@d_user></#if></td>
 				<td>${a.userName}</td>
