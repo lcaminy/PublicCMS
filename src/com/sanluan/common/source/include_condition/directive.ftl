@@ -1,1 +1,1 @@
-<#list conditionList as a><#if "Date"=a.type>handler.get${a.type}("start${a.name?cap_first}"), handler.get${a.type}("end${a.name?cap_first}"), <#else>handler.get${a.type}("${a.name}"), </#if></#list> handler.getPageNo(), handler.getCount()
+<#list conditionList as a><#if "Date"=a.type>handler.get${a.type}("start${a.name?cap_first}"), handler.get${a.type}("end${a.name?cap_first}"), <#else>handler.get${a.type}("${a.name}"), </#if></#list>handler.getInteger("pageNo",1), handler.getInteger("count",20)

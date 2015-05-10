@@ -1,6 +1,6 @@
 package com.sanluan.cms.views.directive.cms;
 
-// Generated 2015-5-9 16:36:28 by SourceMaker
+// Generated 2015-5-10 17:54:56 by SourceMaker
 
 import java.io.IOException;
 
@@ -19,8 +19,8 @@ public class CmsCategoryExtendListDirective extends BaseDirective {
 
 	@Override
 	public void execute(DirectiveHandler handler) throws TemplateException, IOException {
-		PageHandler page = service.getPage(handler.getInteger("extendType"), handler.getInteger("cateoryId"), handler.getShort("type"),  handler.getPageNo(), handler.getCount());
-		handler.render(page);
+		PageHandler page = service.getPage(handler.getInteger("extendType"), handler.getInteger("cateoryId"), handler.getShort("type"), handler.getInteger("pageNo",1), handler.getInteger("count",20));
+		handler.put("page", page).render();
 	}
 
 	@Autowired

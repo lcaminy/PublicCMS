@@ -23,8 +23,8 @@ public class SystemUserListDirective extends BaseDirective {
 	public void execute(DirectiveHandler handler) throws TemplateException, IOException {
 		PageHandler page = service.getPage(handler.getString("name"), handler.getBoolean("superuserAccess"),
 				handler.getBoolean("disable"), handler.getDate("startDateRegistered"), handler.getDate("endDateRegistered"),
-				handler.getPageNo(), handler.getCount());
-		handler.render(page);
+				handler.getInteger("pageNo", 1), handler.getInteger("count", 20));
+		handler.put("page", page).render();
 	}
 
 	@Autowired

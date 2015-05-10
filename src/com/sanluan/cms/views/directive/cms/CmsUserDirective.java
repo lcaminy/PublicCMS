@@ -1,6 +1,6 @@
 package com.sanluan.cms.views.directive.cms;
 
-// Generated 2015-5-9 16:36:28 by SourceMaker
+// Generated 2015-5-10 17:54:56 by SourceMaker
 
 import java.io.IOException;
 
@@ -22,8 +22,7 @@ public class CmsUserDirective extends BaseDirective {
 		Integer id = handler.getInteger("id");
 		if (null != id) {
 			CmsUser bean = service.getEntity(id);
-			handler.put("bean", bean);
-			handler.render();
+			handler.put("bean", bean).render();
 		}
 	}
 

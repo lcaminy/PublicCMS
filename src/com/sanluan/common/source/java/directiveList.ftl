@@ -21,7 +21,7 @@ public class ${entityName}ListDirective extends BaseDirective {
 	@Override
 	public void execute(DirectiveHandler handler) throws TemplateException, IOException {
 		PageHandler page = service.getPage(<#include "../include_condition/directive.ftl">);
-		handler.render(page);
+		handler.put("page", page).render();
 	}
 
 	@Autowired

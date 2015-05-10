@@ -24,8 +24,7 @@ public class ${entityName}Directive extends BaseDirective {
 		Integer id = handler.getInteger("id");
 		if (null != id) {
 			${entityName} bean = service.getEntity(id);
-			handler.put("bean", bean);
-			handler.render();
+			handler.put("bean", bean).render();
 		}
 	}
 

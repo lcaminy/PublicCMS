@@ -32,6 +32,11 @@ public class DirectiveHandler {
 	private TemplateDirectiveBody templateDirectiveBody;
 	private Map<String, Object> map = new HashMap<String, Object>();
 
+	/**
+	 * @param environment
+	 * @param parameters
+	 * @param templateDirectiveBody
+	 */
 	public DirectiveHandler(Environment environment, Map<String, TemplateModel> parameters,
 			TemplateDirectiveBody templateDirectiveBody) {
 		this.environment = environment;
@@ -54,19 +59,6 @@ public class DirectiveHandler {
 	}
 
 	/**
-	 * 渲染
-	 * 
-	 * @param templateDirectiveBody
-	 * @throws IOException
-	 * @throws TemplateException
-	 */
-	public void render(PageHandler page) throws IOException, TemplateException {
-		map.put("page", page);
-		map.put("list", page.getList());
-		render();
-	}
-
-	/**
 	 * 控制变量不为空时，导出所有变量
 	 * 
 	 * @param map
@@ -74,7 +66,7 @@ public class DirectiveHandler {
 	 * @throws IOException
 	 * @throws TemplateException
 	 */
-	public void render(Object notEmptyObject) throws IOException, TemplateException {
+	public void renderIfNotNull(Object notEmptyObject) throws IOException, TemplateException {
 		if (null != notEmptyObject) {
 			render();
 		}
@@ -92,54 +84,17 @@ public class DirectiveHandler {
 	}
 
 	/**
-	 * 
-	 * @return
-	 * @throws TemplateException
-	 */
-	public int getPageNo() throws TemplateException {
-		Integer pageNo = getInteger("pageNo");
-		if (null == pageNo)
-			pageNo = 1;
-		return pageNo;
-	}
-
-	/**
-	 * 
-	 * @return
-	 * @throws TemplateException
-	 */
-	public int getCount() throws TemplateException {
-		return getCount(20);
-	}
-
-	/**
-	 * 
-	 * @return
-	 * @throws TemplateException
-	 */
-	public int getCount(int defaultValue) throws TemplateException {
-		Integer count = getInteger("count");
-		if (null == count)
-			count = defaultValue;
-		return count;
-	}
-
-	/**
-	 * 
-	 * @return
-	 * @throws TemplateException
-	 */
-	public Integer getMaxResults() throws TemplateException {
-		Integer max = getInteger("max");
-		return max;
-	}
-
-	public void put(String key, Object value) {
-		map.put(key, value);
-	}
-
-	/**
 	 * @param key
+	 * @param value
+	 * @return
+	 */
+	public DirectiveHandler put(String key, Object value) {
+		map.put(key, value);
+		return this;
+	}
+
+	/**
+	 * @return
 	 * @throws TemplateModelException
 	 */
 	private Map<String, TemplateModel> reduce() throws TemplateModelException {
@@ -154,7 +109,7 @@ public class DirectiveHandler {
 	}
 
 	/**
-	 * @param key
+	 * @param map
 	 * @throws TemplateModelException
 	 */
 	private void reduce(Map<String, TemplateModel> map) throws TemplateModelException {
@@ -164,7 +119,7 @@ public class DirectiveHandler {
 	}
 
 	/**
-	 * @param index
+	 * @param name
 	 * @return
 	 * @throws TemplateModelException
 	 */
@@ -200,6 +155,20 @@ public class DirectiveHandler {
 		} else {
 			return null;
 		}
+	}
+
+	/**
+	 * @param name
+	 * @param defaultValue
+	 * @return
+	 * @throws TemplateException
+	 */
+	public Integer getInteger(String name, int defaultValue) throws TemplateException {
+		Integer result = getInteger(name);
+		if (null == result)
+			return defaultValue;
+		else
+			return result;
 	}
 
 	/**

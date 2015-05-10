@@ -57,7 +57,7 @@ public class IndexController extends BaseController {
 		return page(request, TEMPLATE_INDEX, model);
 	}
 
-	@RequestMapping(value = { "{dir}", DELIMITER + "{dir}" + DELIMITER })
+	@RequestMapping(value = { "{dir}", "{dir}" + DELIMITER })
 	public String domainAndPage(HttpServletRequest request, @PathVariable String dir, ModelMap model) {
 		return domainAndPage(request, dir, TEMPLATE_INDEX, model);
 	}

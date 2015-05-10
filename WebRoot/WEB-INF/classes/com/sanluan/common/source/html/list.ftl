@@ -42,7 +42,7 @@ ${"<@d_"+entityName?uncap_first+"List"} <#include "../include_condition/paramter
 			</tr>
 		</thead>
 		<tbody>
-			<#noparse><#list t_list as a>
+			<#noparse><#list t_page.list as a>
 			<tr target="sid" rel="${a.id}">
 			</#noparse>
 				<#list columnList as a>

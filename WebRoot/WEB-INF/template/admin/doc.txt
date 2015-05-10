@@ -1,4 +1,4 @@
--- CmsBlock begin 2015-5-6 16:53:26---
+-- CmsBlock begin 2015-5-10 17:54:56---
 字段列表：
 	pageId:页面
 	categoryId:分类
@@ -25,7 +25,7 @@ menu项:
 			t_bean:属性参考字段列表
 -- CmsBlock end --
 
--- CmsBlockData begin 2015-5-6 16:53:26---
+-- CmsBlockData begin 2015-5-10 17:54:56---
 字段列表：
 	blockId:块
 	title:标题
@@ -52,7 +52,7 @@ menu项:
 			t_bean:属性参考字段列表
 -- CmsBlockData end --
 
--- CmsCategory begin 2015-5-6 16:53:26---
+-- CmsCategory begin 2015-5-10 17:54:56---
 字段列表：
 	siteId:站点
 	name:名称
@@ -102,7 +102,7 @@ menu项:
 			t_bean:属性参考字段列表
 -- CmsCategory end --
 
--- CmsCategoryAttribute begin 2015-5-6 16:53:26---
+-- CmsCategoryAttribute begin 2015-5-10 17:54:56---
 字段列表：
 menu项:
 	<li><a href="cmsCategoryAttribute/list.html?navTabId=event" target="navTab" rel="cmsCategoryAttribute">管理</a></li>
@@ -119,7 +119,7 @@ menu项:
 			t_bean:属性参考字段列表
 -- CmsCategoryAttribute end --
 
--- CmsCategoryExtend begin 2015-5-6 16:53:26---
+-- CmsCategoryExtend begin 2015-5-10 17:54:56---
 字段列表：
 	cateoryId:栏目
 	extendType:扩展类型
@@ -147,7 +147,7 @@ menu项:
 			t_bean:属性参考字段列表
 -- CmsCategoryExtend end --
 
--- CmsCategoryModel begin 2015-5-6 16:53:26---
+-- CmsCategoryModel begin 2015-5-10 17:54:56---
 字段列表：
 	categoryId:分类
 	modelId:模型
@@ -170,7 +170,7 @@ menu项:
 			t_bean:属性参考字段列表
 -- CmsCategoryModel end --
 
--- CmsChapter begin 2015-5-6 16:53:26---
+-- CmsChapter begin 2015-5-10 17:54:56---
 字段列表：
 	contentId:内容
 	parentId:父章节
@@ -213,7 +213,7 @@ menu项:
 			t_bean:属性参考字段列表
 -- CmsChapter end --
 
--- CmsChapterAttribute begin 2015-5-6 16:53:26---
+-- CmsChapterAttribute begin 2015-5-10 17:54:56---
 字段列表：
 menu项:
 	<li><a href="cmsChapterAttribute/list.html?navTabId=event" target="navTab" rel="cmsChapterAttribute">管理</a></li>
@@ -230,7 +230,7 @@ menu项:
 			t_bean:属性参考字段列表
 -- CmsChapterAttribute end --
 
--- CmsContent begin 2015-5-6 16:53:26---
+-- CmsContent begin 2015-5-10 17:54:56---
 字段列表：
 	title:标题
 	userId:发布用户
@@ -290,7 +290,7 @@ menu项:
 			t_bean:属性参考字段列表
 -- CmsContent end --
 
--- CmsContentAttribute begin 2015-5-6 16:53:26---
+-- CmsContentAttribute begin 2015-5-10 17:54:56---
 字段列表：
 menu项:
 	<li><a href="cmsContentAttribute/list.html?navTabId=event" target="navTab" rel="cmsContentAttribute">管理</a></li>
@@ -307,7 +307,7 @@ menu项:
 			t_bean:属性参考字段列表
 -- CmsContentAttribute end --
 
--- CmsDictionary begin 2015-5-6 16:53:26---
+-- CmsDictionary begin 2015-5-10 17:54:56---
 字段列表：
 	name:名称
 	description:描述
@@ -326,7 +326,7 @@ menu项:
 			t_bean:属性参考字段列表
 -- CmsDictionary end --
 
--- CmsDictionaryData begin 2015-5-6 16:53:26---
+-- CmsDictionaryData begin 2015-5-10 17:54:56---
 字段列表：
 	dictionaryId:字典
 	name:名称
@@ -348,7 +348,7 @@ menu项:
 			t_bean:属性参考字段列表
 -- CmsDictionaryData end --
 
--- CmsModel begin 2015-5-6 16:53:26---
+-- CmsModel begin 2015-5-10 17:54:56---
 字段列表：
 	name:名称
 	templatePath:模板路径
@@ -370,7 +370,7 @@ menu项:
 			t_bean:属性参考字段列表
 -- CmsModel end --
 
--- CmsModelExtend begin 2015-5-6 16:53:26---
+-- CmsModelExtend begin 2015-5-10 17:54:56---
 字段列表：
 	modelId:模型
 	extendType:扩展类型
@@ -398,7 +398,7 @@ menu项:
 			t_bean:属性参考字段列表
 -- CmsModelExtend end --
 
--- CmsPage begin 2015-5-6 16:53:26---
+-- CmsPage begin 2015-5-10 17:54:56---
 字段列表：
 	siteId:站点
 	title:标题
@@ -422,7 +422,7 @@ menu项:
 			t_bean:属性参考字段列表
 -- CmsPage end --
 
--- CmsSite begin 2015-5-6 16:53:26---
+-- CmsSite begin 2015-5-10 17:54:56---
 字段列表：
 	name:站点名称
 	shortName:站点简称
@@ -448,7 +448,7 @@ menu项:
 			t_bean:属性参考字段列表
 -- CmsSite end --
 
--- CmsSiteUser begin 2015-5-6 16:53:26---
+-- CmsSiteUser begin 2015-5-10 17:54:56---
 字段列表：
 	siteId:站点
 	userId:用户
@@ -473,7 +473,7 @@ menu项:
 			t_bean:属性参考字段列表
 -- CmsSiteUser end --
 
--- CmsUser begin 2015-5-6 16:53:26---
+-- CmsUser begin 2015-5-10 17:54:56---
 字段列表：
 	contentCount:文章数
 	commentCount:评论数
@@ -491,3 +491,4 @@ menu项:
 		结果：
 			t_bean:属性参考字段列表
 -- CmsUser end --
+
