@@ -7,8 +7,6 @@ import static com.sanluan.common.constants.CommonConstants.REQUEST_SUFFIX;
  * 
  */
 public class FreeMakerConstants {
-	public static final String TEMPLATE_BASE_PREFIX = "/WEB-INF/template/";
-	public static final String TEMPLATE_INDEX_PREFIX = "web/";
 	public static final String TEMPLATE_SUFFIX = REQUEST_SUFFIX;
 
 	public static final String CONTEXT_BASE = "base";

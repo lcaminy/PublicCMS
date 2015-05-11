@@ -1,5 +1,6 @@
 package com.sanluan.cms.common.servlet.view;
 
+import static com.sanluan.common.constants.FreeMakerConstants.CONTEXT_BASE;
 import static com.sanluan.common.constants.FreeMakerConstants.CONTEXT_INCLUDE;
 
 import java.util.Enumeration;
@@ -34,6 +35,7 @@ public class InitializeFreeMarkerView extends FreeMarkerView {
 		super.exposeHelpers(model, request);
 		model.put(CONTEXT_USER, UserUtils.getUserFromSession(request));
 		model.put(CONTEXT_ADMIN, UserUtils.getAdminFromSession(request));
+		model.put(CONTEXT_BASE, request.getContextPath());
 		Enumeration<String> parameters = request.getParameterNames();
 		while (parameters.hasMoreElements()) {
 			String paramterName = parameters.nextElement();

@@ -3,9 +3,8 @@ package com.sanluan.cms.logic.component;
 import static com.sanluan.common.constants.CommonConstants.NUMBER_PATTERN;
 import static com.sanluan.common.constants.CommonConstants.PATH_DELIMITER;
 import static com.sanluan.common.constants.FreeMakerConstants.CACHE_VAR;
+import static com.sanluan.common.constants.FreeMakerConstants.CONTEXT_BASE;
 import static com.sanluan.common.constants.FreeMakerConstants.CONTEXT_INCLUDE;
-import static com.sanluan.common.constants.FreeMakerConstants.TEMPLATE_BASE_PREFIX;
-import static com.sanluan.common.constants.FreeMakerConstants.TEMPLATE_INDEX_PREFIX;
 import static com.sanluan.common.constants.FreeMakerConstants.TEMPLATE_SUFFIX;
 
 import java.io.File;
@@ -79,6 +78,7 @@ public class CacheComponent {
 		path += sb.toString();
 		model.put(CONTEXT_INCLUDE, new IncludePage(request, response));
 		model.put(CACHE_VAR, true);
+		model.put(CONTEXT_BASE, request.getContextPath());
 		return createCache(templatePath, path, getBasePath(request), model, response);
 	}
 
@@ -99,7 +99,7 @@ public class CacheComponent {
 	}
 
 	private String getBasePath(HttpServletRequest request) {
-		return null == basePath ? (basePath = request.getSession().getServletContext().getRealPath(TEMPLATE_BASE_PREFIX)) : basePath;
+		return null == basePath ? (basePath = request.getSession().getServletContext().getRealPath("/")) : basePath;
 	}
 
 	private String createCache(String templatePath, String path, String basePath, ModelMap model, HttpServletResponse response) {
@@ -153,11 +153,11 @@ public class CacheComponent {
 	}
 
 	private String getHtmlFilePath(String realPath, String path) {
-		return realPath + TEMPLATE_INDEX_PREFIX + cacheFileDirectory + path + TEMPLATE_SUFFIX;
+		return realPath + cacheFileDirectory + path + TEMPLATE_SUFFIX;
 	}
 
 	private String getTemplateFilePath(String path) {
-		return TEMPLATE_INDEX_PREFIX + path + TEMPLATE_SUFFIX;
+		return  path + TEMPLATE_SUFFIX;
 	}
 
 	@Autowired
