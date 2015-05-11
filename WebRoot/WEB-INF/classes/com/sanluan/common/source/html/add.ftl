@@ -1,4 +1,4 @@
-${"<@d_"+entityName?uncap_first+" id=id><#assign a=t_bean/></@d_"+entityName?uncap_first+">"}
+${"<@d_"+entityName?replace('Cms','')?uncap_first+" id=id><#assign a=t_bean/></@d_"+entityName?replace('Cms','')?uncap_first+">"}
 <div class="pageContent">
 	<form method="post" action="${entityName?uncap_first}/save.do?callbackType=closeCurrent" class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDone);">
 		<input name="id" type="hidden" value="<#noparse>${id!}</#noparse>" />

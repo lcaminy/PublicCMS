@@ -1,4 +1,4 @@
-<@d_cmsContentList extendNumber3=queryExtendNumber3 extendNumber4=queryExtendNumber4 status=queryStatus extend1=queryExtend1 categoryId=queryCategoryId extend3=queryExtend3 extend2=queryExtend2 extend4=queryExtend4 isDisable=queryIsDisable modelId=queryModelId title=queryTitle userId=queryUserId extendNumber2=queryExtendNumber2 startPublishDate=queryStartPublishDate endPublishDate=queryEndPublishDate extendNumber1=queryExtendNumber1 pageNo=pageNum count=numPerPage>
+<@d_contentList extendNumber3=queryExtendNumber3 extendNumber4=queryExtendNumber4 status=queryStatus extend1=queryExtend1 categoryId=queryCategoryId extend3=queryExtend3 extend2=queryExtend2 extend4=queryExtend4 isDisable=queryIsDisable modelId=queryModelId title=queryTitle userId=queryUserId extendNumber2=queryExtendNumber2 startPublishDate=queryStartPublishDate endPublishDate=queryEndPublishDate extendNumber1=queryExtendNumber1 pageNo=pageNum count=numPerPage>
 <form id="pagerForm" method="post">
 	<#include "../include_page/queryParamters.html"/>
 </form>
@@ -8,17 +8,19 @@
 		<table class="searchContent">
 			<tr>
 				<td>
+					已删除：<input type="text" name="queryIsDisable" value="${queryIsDisable!}" />
+				</td>
+				<td>
 					状态：<input type="text" name="queryStatus" value="${queryStatus!}" />
 				</td>
 				<td>
 					分类：<input type="text" name="queryCategoryId" value="${queryCategoryId!}" />
 				</td>
 				<td>
-					已删除：<input type="text" name="queryIsDisable" value="${queryIsDisable!}" />
-				</td>
-				<td>
 					模型：<input type="text" name="queryModelId" value="${queryModelId!}" />
 				</td>
+			</tr>
+			<tr>
 				<td>
 					标题：<input type="text" name="queryTitle" value="${queryTitle!}" />
 				</td>
@@ -78,19 +80,11 @@
 				<th>发布用户</th>
 				<th>分类</th>
 				<th>模型</th>
-				<th>是否转载</th>
-				<th>来源</th>
-				<th>作者</th>
-				<th>编辑</th>
-				<th>地址</th>
-				<th>描述</th>
-				<th>封面</th>
-				<th>章节数</th>
 				<th>分数</th>
 				<th>评论数</th>
 				<th>点击数</th>
 				<th>发布日期</th>
-				<th>创建日期</th>
+				<th><a href="#">创建日期</a></th>
 				<th>状态</th>
 				<th>已删除</th>
 				<#-- <th>扩展字段1</th>
@@ -106,25 +100,17 @@
 		<tbody>
 			<#list t_page.list as a>
 			<tr target="sid" rel="${a.id}">
-				<td>${a.title!}</td>
-				<td>${a.userId!}</td>
-				<td>${a.categoryId!}</td>
-				<td>${a.modelId!}</td>
-				<td>${a.isCopied!}</td>
-				<td>${a.source!}</td>
-				<td>${a.author!}</td>
-				<td>${a.editor!}</td>
-				<td>${a.url!}</td>
-				<td>${a.description!}</td>
-				<td>${a.cover!}</td>
-				<td>${a.chapters!}</td>
+				<td>${(a.isCopied?string('[转载]',''))!}${a.title!}</td>
+				<td><@d_systemUser id=a.userId>${(t_bean.name)!}</@d_systemUser></td>
+				<td><@d_category id=a.categoryId>${(t_bean.name)!}</@d_category></td>
+				<td><@d_model id=a.modelId>${(t_bean.name)!}</@d_model></td>
 				<td>${a.scores!}</td>
 				<td>${a.comments!}</td>
 				<td>${a.clicks!}</td>
 				<td>${a.publishDate!}</td>
 				<td>${a.createDate!}</td>
-				<td>${a.status!}</td>
-				<td>${a.isDisable!}</td>
+				<td><@t.m 'status.content.'+a.status/></td>
+				<td>${(a.isDisable?string('已删除',''))!}</td>
 				<#-- <td>${a.extend1!}</td>
 				<td>${a.extend2!}</td>
 				<td>${a.extend3!}</td>
@@ -139,4 +125,4 @@
 	</table>
 <#include "../include_page/page.html"/>
 </div>
-</@d_cmsContentList>
+</@d_contentList>

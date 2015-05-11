@@ -22,7 +22,7 @@ public class CmsSiteDirective extends BaseDirective {
 		Integer id = handler.getInteger("id");
 		if (null != id) {
 			CmsSite bean = service.getEntity(id);
-			handler.put("bean", bean).render();
+			handler.put("bean", bean).renderIfNotNull(bean);
 		}
 	}
 

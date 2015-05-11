@@ -57,7 +57,6 @@ $(function(){
 			<a class="logo" href="./"></a>
 			<ul class="nav">
 				<li><a href="systemuser/password.html" target="dialog" width="600">修改密码</a></li>
-				<li><a href="clearTemplateCache.do" target="ajaxTodo">刷新缓存</a></li>
 				<li><a href="logout.do">退出</a></li>
 			</ul>
 			<ul class="themeList" id="themeList">
@@ -71,7 +70,12 @@ $(function(){
 		<!-- navMenu -->
 		<div id="navMenu">
 			<ul>
-				<li class="selected"><a href="menu/menu.html"><span>后台管理</span></a></li>
+				<li class="selected"><a href="menu/myself.html"><span>与我相关</span></a></li>
+				<li><a href="menu/content.html"><span>内容管理</span></a></li>
+				<li><a href="menu/page.html"><span>页面管理</span></a></li>
+				<li><a href="menu/user.html"><span>用户管理</span></a></li>
+				<li><a href="menu/model.html"><span>模型管理</span></a></li>
+				<li><a href="menu/site.html"><span>站点管理</span></a></li>
 			</ul>
 		</div>
 	</div>
@@ -83,19 +87,19 @@ $(function(){
 		</div>
 		<div id="sidebar">
 			<div class="toggleCollapse"><h2>主菜单</h2><div>收缩</div></div>
-			<#include "menu/menu.html"/>
+			<#include "menu/myself.html"/>
 		</div>
 	</div>
 	<div id="container">
 		<div id="navTab" class="tabsPage">
 			<div class="tabsPageHeader">
-				<div class="tabsPageHeaderContent"><!-- 显示左右控制时添加 class="tabsPageHeaderMargin" -->
+				<div class="tabsPageHeaderContent">
 					<ul class="navTab-tab">
 						<li tabid="main" class="main"><a href="javascript:;"><span><span class="home_icon">我的主页</span></span></a></li>
 					</ul>
 				</div>
-				<div class="tabsLeft">left</div><!-- 禁用只需要添加一个样式 class="tabsLeft tabsLeftDisabled" -->
-				<div class="tabsRight">right</div><!-- 禁用只需要添加一个样式 class="tabsRight tabsRightDisabled" -->
+				<div class="tabsLeft">left</div>
+				<div class="tabsRight">right</div>
 				<div class="tabsMore">more</div>
 			</div>
 			<ul class="tabsMoreList">
@@ -116,6 +120,6 @@ $(function(){
 		</div>
 	</div>
 </div>
-<div id="footer">Copyright &copy; 2014</div>
+<div id="footer">Copyright &copy; 2015</div>
 </body>
 </html>

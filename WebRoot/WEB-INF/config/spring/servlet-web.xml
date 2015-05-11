@@ -23,7 +23,7 @@
 			</list>
 		</property>
 	</bean>
-	<bean id="cacheComponent" class="com.sanluan.logic.component.CacheComponent">
+	<bean id="cacheComponent" class="com.sanluan.cms.logic.component.CacheComponent">
 		<property name="cacheFileDirectory" value="../cacheHtmlFile/"/>
 		<property name="cachePaths">
 			<map>

@@ -22,7 +22,7 @@ public class CmsCategoryModelDirective extends BaseDirective {
 		Integer id = handler.getInteger("id");
 		if (null != id) {
 			CmsCategoryModel bean = service.getEntity(id);
-			handler.put("bean", bean).render();
+			handler.put("bean", bean).renderIfNotNull(bean);
 		}
 	}
 

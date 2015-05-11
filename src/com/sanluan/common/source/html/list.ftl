@@ -1,4 +1,4 @@
-${"<@d_"+entityName?uncap_first+"List"} <#include "../include_condition/paramter.ftl">>
+${"<@d_"+entityName?replace('Cms','')?uncap_first+"List"} <#include "../include_condition/paramter.ftl">>
 <form id="pagerForm" method="post">
 	<#noparse><#include "../include_page/queryParamters.html"/></#noparse>
 </form>
@@ -55,4 +55,4 @@ ${"<@d_"+entityName?uncap_first+"List"} <#include "../include_condition/paramter
 	</table>
 <#noparse><#include "../include_page/page.html"/></#noparse>
 </div>
-${"</@d_"+entityName?uncap_first+"List>"}
+${"</@d_"+entityName?replace('Cms','')?uncap_first+"List>"}

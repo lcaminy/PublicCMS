@@ -22,7 +22,7 @@ public class CmsDictionaryDirective extends BaseDirective {
 		Integer id = handler.getInteger("id");
 		if (null != id) {
 			CmsDictionary bean = service.getEntity(id);
-			handler.put("bean", bean).render();
+			handler.put("bean", bean).renderIfNotNull(bean);
 		}
 	}
 

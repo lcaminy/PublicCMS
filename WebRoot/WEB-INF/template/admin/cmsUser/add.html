@@ -1,4 +1,4 @@
-<@d_cmsUser id=id><#assign a=t_bean/></@d_cmsUser>
+<@d_user id=id><#assign a=t_bean/></@d_user>
 <div class="pageContent">
 	<form method="post" action="cmsUser/save.do?callbackType=closeCurrent" class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDone);">
 		<input name="id" type="hidden" value="${id!}" />

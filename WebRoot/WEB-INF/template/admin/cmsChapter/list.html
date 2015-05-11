@@ -1,4 +1,4 @@
-<@d_cmsChapterList extendNumber3=queryExtendNumber3 extendNumber4=queryExtendNumber4 extend1=queryExtend1 extend3=queryExtend3 image=queryImage extend2=queryExtend2 extend4=queryExtend4 contentId=queryContentId parentId=queryParentId title=queryTitle extendNumber2=queryExtendNumber2 extendNumber1=queryExtendNumber1 pageNo=pageNum count=numPerPage>
+<@d_chapterList extendNumber3=queryExtendNumber3 extendNumber4=queryExtendNumber4 extend1=queryExtend1 extend3=queryExtend3 image=queryImage extend2=queryExtend2 extend4=queryExtend4 contentId=queryContentId parentId=queryParentId title=queryTitle extendNumber2=queryExtendNumber2 extendNumber1=queryExtendNumber1 pageNo=pageNum count=numPerPage>
 <form id="pagerForm" method="post">
 	<#include "../include_page/queryParamters.html"/>
 </form>
@@ -7,16 +7,16 @@
 	<div class="searchBar">
 		<table class="searchContent">
 			<tr>
-				<@d_cmsContent id=queryContentId>
+				<@d_content id=queryContentId>
 				<td>
-					<@d_cmsModel id=t_bean.modelId>${t_bean.name}</@d_cmsModel>：${t_bean.title!}
+					<@d_model id=t_bean.modelId>${t_bean.name}</@d_model>：${t_bean.title!}
 				</td>
-				</@d_cmsContent>
-				<@d_cmsChapter id=queryParentId>
+				</@d_content>
+				<@d_chapter id=queryParentId>
 				<td>
-					父<@d_cmsModel>${t_bean.name}</@d_cmsModel>：${t_bean.title!}
+					父<@d_model>${t_bean.name}</@d_model>：${t_bean.title!}
 				</td>
-				</@d_cmsChapter>
+				</@d_chapter>
 				<td>
 					是否有图片：<input type="text" name="queryImage" value="${queryImage!}" />
 				</td>
@@ -101,4 +101,4 @@
 	</table>
 <#include "../include_page/page.html"/>
 </div>
-</@d_cmsChapterList>
+</@d_chapterList>

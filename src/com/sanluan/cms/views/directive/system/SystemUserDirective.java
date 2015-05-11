@@ -26,7 +26,7 @@ public class SystemUserDirective extends BaseDirective {
 			SystemUser bean = service.getEntity(id);
 			bean.setPassword(null);
 			bean.setAuthToken(null);
-			handler.put("bean", bean).render();
+			handler.put("bean", bean).renderIfNotNull(bean);
 		}
 	}
 

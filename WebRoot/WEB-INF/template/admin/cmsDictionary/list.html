@@ -1,4 +1,4 @@
-<@d_cmsDictionaryList pageNo=pageNum count=numPerPage>
+<@d_dictionaryList pageNo=pageNum count=numPerPage>
 <form id="pagerForm" method="post">
 	<#include "../include_page/queryParamters.html"/>
 </form>
@@ -31,7 +31,7 @@
 		<tbody>
 			<#list t_page.list as a>
 			<tr target="sid" rel="${a.id}">
-				<td>${a.name!}</td>
+				<td><a href="cmsDictionaryData/list.html?navTabId=cmsDictionaryData" title="${a.name!}:数据管理" target="navTab" rel="cmsDictionaryData">${a.name!}</a></td>
 				<td>${a.description!}</td>
 			</tr>
 			</#list>
@@ -39,4 +39,4 @@
 	</table>
 <#include "../include_page/page.html"/>
 </div>
-</@d_cmsDictionaryList>
+</@d_dictionaryList>
