@@ -12,24 +12,21 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateUtils;
-import org.springframework.beans.BeansException;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.ApplicationContextAware;
 import org.springframework.web.util.UrlPathHelper;
 
 import com.sanluan.cms.common.tools.UserUtils;
 import com.sanluan.cms.entities.system.SystemUser;
 import com.sanluan.cms.logic.service.system.SystemUserService;
 import com.sanluan.common.base.BaseInterceptor;
+import com.sanluan.common.tools.SpringContextUtils;
 
 /**
  * @author zhangxd
  * 
  */
-public class ContextInterceptor extends BaseInterceptor implements ApplicationContextAware {
+public class ContextInterceptor extends BaseInterceptor{
 	private String[] needLoginUrls;
 	private String loginUrl;
-	private ApplicationContext applicationContext;
 	private SystemUserService systemUserService;
 
 	@Override
@@ -74,7 +71,7 @@ public class ContextInterceptor extends BaseInterceptor implements ApplicationCo
 
 	private SystemUserService getSystemUserService() {
 		if (null == systemUserService) {
-			systemUserService = applicationContext.getBean(SystemUserService.class);
+			systemUserService = SpringContextUtils.getApplicationContext().getBean(SystemUserService.class);
 		}
 		return systemUserService;
 	}
@@ -90,11 +87,6 @@ public class ContextInterceptor extends BaseInterceptor implements ApplicationCo
 			}
 		}
 		return false;
-	}
-
-	@Override
-	public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-		this.applicationContext = applicationContext;
 	}
 
 	/**

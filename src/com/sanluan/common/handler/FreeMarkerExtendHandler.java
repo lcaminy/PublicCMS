@@ -20,26 +20,26 @@ import freemarker.template.TemplateMethodModelEx;
 import freemarker.template.TemplateModelException;
 
 public class FreeMarkerExtendHandler implements ApplicationContextAware {
-	private ApplicationContext applicationContext;
 	private String directiveBasePackage;
 	private String methodBasePackage;
 	private String directivePrefix;
 	private String methodPrefix;
-	private String directiveRemoveString;
-	private String methodRemoveString;
-	protected final Log logger = LogFactory.getLog(getClass());
+	private String directiveRemoveRegex;
+	private String methodRemoveRegex;
+	private final Log logger = LogFactory.getLog(getClass());
 
-	public FreeMarkerExtendHandler() {
+	@Override
+	public void setApplicationContext(ApplicationContext applicationcontext) throws BeansException {
 		logger.info("Freemarker directives and methods Handler started");
-		FreeMarkerConfigurer freeMarkerConfigurer = applicationContext.getBean(FreeMarkerConfigurer.class);
+		FreeMarkerConfigurer freeMarkerConfigurer = applicationcontext.getBean(FreeMarkerConfigurer.class);
 		Map<String, Object> freemarkerVariables = new HashMap<String, Object>();
 
 		StringBuffer directives = new StringBuffer();
 		List<Class<?>> directiveClasses = MyClassUtils.getAllAssignedClass(TemplateDirectiveModel.class, directiveBasePackage);
 		for (Class<?> c : directiveClasses) {
-			String directiveName = StringUtils.uncapitalize(c.getSimpleName());
-			directiveName = directivePrefix + directiveName.replace(directiveRemoveString, "");
-			freemarkerVariables.put(directiveName, applicationContext.getBean(c));
+			String directiveName = directivePrefix
+					+ StringUtils.uncapitalize(c.getSimpleName().replaceAll(directiveRemoveRegex, ""));
+			freemarkerVariables.put(directiveName, applicationcontext.getBean(c));
 			if (0 != directives.length())
 				directives.append(",");
 			directives.append(directiveName);
@@ -48,9 +48,8 @@ public class FreeMarkerExtendHandler implements ApplicationContextAware {
 		List<Class<?>> methodClasses = MyClassUtils.getAllAssignedClass(TemplateMethodModelEx.class, methodBasePackage);
 		StringBuffer methods = new StringBuffer();
 		for (Class<?> c : methodClasses) {
-			String methodName = StringUtils.uncapitalize(c.getSimpleName());
-			methodName = methodPrefix + methodName.replace(methodRemoveString, "");
-			freemarkerVariables.put(methodName, applicationContext.getBean(c));
+			String methodName = methodPrefix + StringUtils.uncapitalize(c.getSimpleName().replaceAll(methodRemoveRegex, ""));
+			freemarkerVariables.put(methodName, applicationcontext.getBean(c));
 			if (0 != methods.length())
 				methods.append(",");
 			methods.append(methodName);
@@ -63,11 +62,6 @@ public class FreeMarkerExtendHandler implements ApplicationContextAware {
 					+ methodClasses.size() + " methods created:[" + methods.toString() + "]");
 		} catch (TemplateModelException e) {
 		}
-	}
-
-	@Override
-	public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-		this.applicationContext = applicationContext;
 	}
 
 	/**
@@ -103,18 +97,18 @@ public class FreeMarkerExtendHandler implements ApplicationContextAware {
 	}
 
 	/**
-	 * @param directiveRemoveString
-	 *            the directiveRemoveString to set
+	 * @param directiveRemoveRegex
+	 *            the directiveRemoveRegex to set
 	 */
-	public void setDirectiveRemoveString(String directiveRemoveString) {
-		this.directiveRemoveString = directiveRemoveString;
+	public void setDirectiveRemoveRegex(String directiveRemoveRegex) {
+		this.directiveRemoveRegex = directiveRemoveRegex;
 	}
 
 	/**
-	 * @param methodRemoveString
-	 *            the methodRemoveString to set
+	 * @param methodRemoveRegex
+	 *            the methodRemoveRegex to set
 	 */
-	public void setMethodRemoveString(String methodRemoveString) {
-		this.methodRemoveString = methodRemoveString;
+	public void setMethodRemoveRegex(String methodRemoveRegex) {
+		this.methodRemoveRegex = methodRemoveRegex;
 	}
 }
