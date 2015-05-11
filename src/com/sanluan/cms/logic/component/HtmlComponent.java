@@ -32,17 +32,15 @@ public class HtmlComponent {
 		try {
 			Template template = freeMarkerConfigurer.getConfiguration().getTemplate(templatePath);
 			template.setEncoding("utf-8");
-			File temp = File.createTempFile("html", "tmp");
-			Writer out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(temp), "utf-8"));
-			template.process(model, out);
-			out.close();
 			File dest = new File(htmlPath);
 			File parent = dest.getParentFile();
 			if (parent != null) {
 				parent.mkdirs();
 			}
-			dest.delete();
-			return temp.renameTo(dest);
+			Writer out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(dest), "utf-8"));
+			template.process(model, out);
+			out.close();
+			return true;
 		} catch (Exception e) {
 			log.error(e.getMessage());
 			return false;
