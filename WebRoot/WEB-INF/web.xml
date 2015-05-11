@@ -34,14 +34,6 @@
 			<param-name>contextConfigLocation</param-name>
 			<param-value>/WEB-INF/config/spring/servlet-admin.xml</param-value>
 		</init-param>
-		<init-param>
-			<param-name>directiveBasePackage</param-name>
-			<param-value>com.sanluan.cms.views.directive</param-value>
-		</init-param>
-		<init-param>
-			<param-name>methodBasePackage</param-name>
-			<param-value>com.sanluan.cms.views.method</param-value>
-		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 	<servlet-mapping>

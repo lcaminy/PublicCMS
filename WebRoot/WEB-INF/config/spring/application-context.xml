@@ -100,6 +100,14 @@
 			</props>
 		</property>
 	</bean>
+	<bean class="com.sanluan.common.handler.FreeMarkerExtendHandler">
+		<property name="directiveBasePackage" value="com.sanluan.cms.views.directive"/>
+		<property name="directivePrefix" value="d_"/>
+		<property name="directiveRemoveString" value="Directive"/>
+		<property name="methodBasePackage" value="com.sanluan.cms.views.method"/>
+		<property name="methodPrefix" value="m_"/>
+		<property name="methodRemoveString" value="Method"/>
+	</bean>
 	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter"/>
 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"
 		p:defaultEncoding="utf-8"/>

@@ -1,4 +1,4 @@
-package com.sanluan.cms.logic.component;
+package com.sanluan.cms.views.directive.tools;
 
 import static com.sanluan.common.constants.FreeMakerConstants.CACHE_VAR;
 
