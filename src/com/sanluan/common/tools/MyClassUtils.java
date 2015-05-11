@@ -5,6 +5,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
+
 public class MyClassUtils {
 
 	public static List<Class<?>> getAllAssignedClass(Class<?> cls, String basePackage) {
@@ -18,14 +20,16 @@ public class MyClassUtils {
 	}
 
 	public static List<Class<?>> getClasses(String basePackage) {
-		String path = basePackage.replace('.', '/');
-		ClassLoader classloader = Thread.currentThread().getContextClassLoader();
-		URL url = classloader.getResource(path);
-		File file = null;
-		if (null != url) {
-			file = new File(url.getFile());
+		File dir = null;
+		if (StringUtils.isNotBlank(basePackage)) {
+			String path = basePackage.replace('.', '/');
+			ClassLoader classloader = Thread.currentThread().getContextClassLoader();
+			URL url = classloader.getResource(path);
+			if (null != url) {
+				dir = new File(url.getFile());
+			}
 		}
-		return getClasses(file, basePackage);
+		return getClasses(dir, basePackage);
 	}
 
 	private static List<Class<?>> getClasses(File dir, String currentPackage) {
