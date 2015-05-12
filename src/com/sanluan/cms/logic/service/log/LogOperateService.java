@@ -23,9 +23,12 @@ public class LogOperateService extends BaseService<LogOperate, LogOperateDao> {
 	private LogOperateDao dao;
 
 	@Transactional(readOnly = true)
-	public PageHandler getPage(Integer userId, String operate, String content, Date startCreateDate, Date endCreateDate,
-			int pageNo, int pageSize) {
-		return dao.getPage(userId, operate, content, startCreateDate, endCreateDate, pageNo, pageSize);
+	public PageHandler getPage(String content, String operate, 
+				Integer userId, Date startCreateDate, Date endCreateDate, 
+				String orderField, String orderType, int pageNo, int pageSize) {
+		return dao.getPage(content, operate, 
+				userId, startCreateDate, endCreateDate, 
+				orderField, orderType, pageNo, pageSize);
 	}
 
 	@Override

@@ -2,12 +2,17 @@ package com.sanluan.cms.entities.cms;
 
 // Generated 2015-5-6 15:49:39 by Hibernate Tools 4.0.0
 
+import static javax.persistence.GenerationType.IDENTITY;
+
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import com.sanluan.common.source.entity.MyColumn;
 
@@ -31,6 +36,8 @@ public class CmsChapter implements java.io.Serializable {
 	private String title;
 	@MyColumn(title = "图片", condition = true)
 	private String image;
+	private Date publishDate;
+	private Date createDate;
 	@MyColumn(title = "描述")
 	private String description;
 	@MyColumn(title = "扩展字段1", condition = true)
@@ -53,19 +60,23 @@ public class CmsChapter implements java.io.Serializable {
 	public CmsChapter() {
 	}
 
-	public CmsChapter(int contentId, String title, String description) {
+	public CmsChapter(int contentId, String title, Date publishDate, Date createDate, String description) {
 		this.contentId = contentId;
 		this.title = title;
+		this.publishDate = publishDate;
+		this.createDate = createDate;
 		this.description = description;
 	}
 
-	public CmsChapter(int contentId, Integer parentId, String title, String image, String description, String extend1,
-			String extend2, String extend3, String extend4, Integer extendNumber1, Integer extendNumber2, Integer extendNumber3,
-			Integer extendNumber4) {
+	public CmsChapter(int contentId, Integer parentId, String title, String image, Date publishDate, Date createDate,
+			String description, String extend1, String extend2, String extend3, String extend4, Integer extendNumber1,
+			Integer extendNumber2, Integer extendNumber3, Integer extendNumber4) {
 		this.contentId = contentId;
 		this.parentId = parentId;
 		this.title = title;
 		this.image = image;
+		this.publishDate = publishDate;
+		this.createDate = createDate;
 		this.description = description;
 		this.extend1 = extend1;
 		this.extend2 = extend2;
@@ -122,6 +133,26 @@ public class CmsChapter implements java.io.Serializable {
 
 	public void setImage(String image) {
 		this.image = image;
+	}
+
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "publish_date", nullable = false, length = 19)
+	public Date getPublishDate() {
+		return this.publishDate;
+	}
+
+	public void setPublishDate(Date publishDate) {
+		this.publishDate = publishDate;
+	}
+
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "create_date", nullable = false, length = 19)
+	public Date getCreateDate() {
+		return this.createDate;
+	}
+
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
 	}
 
 	@Column(name = "description", nullable = false, length = 500)

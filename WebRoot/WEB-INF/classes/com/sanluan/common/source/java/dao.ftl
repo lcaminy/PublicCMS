@@ -17,7 +17,6 @@ public class ${entityName}Dao extends BaseDao<${entityName}> {
 	public PageHandler getPage(<#include "../include_condition/condition.ftl">) {
 		QueryHandler queryMaker = getQueryMaker("from ${entityName} bean");
 		<#include "../include_condition/hql.ftl">
-		queryMaker.append("order by bean.id desc");
 		return getPage(queryMaker, pageNo, pageSize);
 	}
 

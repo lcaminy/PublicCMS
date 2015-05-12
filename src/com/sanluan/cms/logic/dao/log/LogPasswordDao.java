@@ -15,7 +15,9 @@ import com.sanluan.common.handler.QueryHandler;
  */
 @Repository
 public class LogPasswordDao extends BaseDao<LogPassword> {
-	public PageHandler getPage(Integer userId, String ip, Date startCreateDate, Date endCreateDate, int pageNo, int pageSize) {
+	public PageHandler getPage(Integer userId, Date startCreateDate, Date endCreateDate, 
+				String ip, 
+				String orderField, String orderType, int pageNo, int pageSize) {
 		QueryHandler queryMaker = getQueryMaker("from LogPassword bean");
 		if (notEmpty(userId)) {
 			queryMaker.condition("bean.userId = :userId").setParameter("userId", userId);
@@ -24,12 +26,20 @@ public class LogPasswordDao extends BaseDao<LogPassword> {
 			queryMaker.condition("bean.createDate >= :startCreateDate").setParameter("startCreateDate", startCreateDate);
 		}
 		if (notEmpty(endCreateDate)) {
-			queryMaker.condition("bean.createDate < :endCreateDate").setParameter("endCreateDate", endCreateDate);
+			queryMaker.condition("bean.createDate < :endCreateDate").setParameter("endCreateDate", tomorrow(endCreateDate));
 		}
 		if (notEmpty(ip)) {
 			queryMaker.condition("bean.ip like :ip").setParameter("ip", like(ip));
 		}
-		queryMaker.append("order by bean.createDate desc");
+		if("asc".equals(orderType)){
+			orderType = "asc";
+		}else{
+			orderType = "desc";
+		}
+		switch(orderField) {
+			case "createDate" : queryMaker.append("order by bean.createDate " + orderType); break;
+			default : queryMaker.append("order by bean.id "+orderType);
+		}
 		return getPage(queryMaker, pageNo, pageSize);
 	}
 

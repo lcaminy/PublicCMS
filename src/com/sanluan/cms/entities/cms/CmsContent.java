@@ -50,13 +50,13 @@ public class CmsContent implements java.io.Serializable {
 	private String cover;
 	@MyColumn(title = "章节数")
 	private int chapters;
-	@MyColumn(title = "分数")
+	@MyColumn(title = "分数", order = true)
 	private int scores;
-	@MyColumn(title = "评论数")
+	@MyColumn(title = "评论数", order = true)
 	private int comments;
-	@MyColumn(title = "点击数")
+	@MyColumn(title = "点击数", order = true)
 	private int clicks;
-	@MyColumn(title = "发布日期", condition = true)
+	@MyColumn(title = "发布日期", condition = true, order = true)
 	private Date publishDate;
 	@MyColumn(title = "创建日期")
 	private Date createDate;

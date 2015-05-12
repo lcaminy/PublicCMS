@@ -31,12 +31,12 @@ public class Maker {
 	public static final String DIRECTIVE_SUFFIX = "Directive";
 	public static final String CONTROLLER_BASE_PACKAGE = "admin.views.controller";
 	public static final String CONTROLLER_SUFFIX = "Controller";
-	public static final String WEB_BASE_PATH = "WebRoot/WEB-INF/template/admin/";
+	public static final String WEB_BASE_PATH = "WebRoot/WEB-INF/template/admin/bak/";
 
 	public static void main(String[] args) {
 		Maker sourceMaker = new Maker();
 		boolean overwrite = false;
-		sourceMaker.make("com.sanluan.cms", "cms", overwrite);
+		sourceMaker.make("com.sanluan.cms", "cmsbak", overwrite);
 	}
 
 	public void make(String basePackage) {
@@ -115,7 +115,7 @@ public class Maker {
 				MyColumn column = field.getAnnotation(MyColumn.class);
 				if (null != column) {
 					String shortTypeName = typeName.substring(typeName.lastIndexOf(".") + 1, typeName.length());
-					columnList.add(new EntityColumn(field.getName(), shortTypeName, column.title()));
+					columnList.add(new EntityColumn(field.getName(), shortTypeName, column.order(), column.title()));
 					if (column.condition()) {
 						if (!typeName.startsWith("java.lang"))
 							imports.add(typeName);

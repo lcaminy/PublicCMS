@@ -37,7 +37,7 @@ ${"<@d_"+entityName?replace('Cms','')?uncap_first+"List"} <#include "../include_
 		<thead>
 			<tr>
 				<#list columnList as a>
-				<th>${a.title}</th>
+				<th<#if a.order> orderField="${a.name}" class="<#noparse><#if orderField??&&a.name==orderField><#if 'asc'=orderType>asc<#else>desc</#if><#else>order</#if></#noparse>"</#if>>${a.title}</th>
 				</#list>
 			</tr>
 		</thead>

@@ -19,7 +19,8 @@ public class CmsSiteListDirective extends BaseDirective {
 
 	@Override
 	public void execute(DirectiveHandler handler) throws TemplateException, IOException {
-		PageHandler page = service.getPage(handler.getBoolean("isDisable"), handler.getInteger("pageNo",1), handler.getInteger("count",20));
+		PageHandler page = service.getPage(handler.getDate("startCreateDate"), handler.getDate("endCreateDate"), handler.getBoolean("isDisable"), 
+				handler.getString("orderField"), handler.getString("orderType"), handler.getInteger("pageNo",1), handler.getInteger("count",20));
 		handler.put("page", page).render();
 	}
 

@@ -116,7 +116,7 @@ menu项:
 			t_bean:属性参考字段列表
 -- CmsCategoryModel end --
 
--- CmsChapter begin 2015-5-11 21:56:48---
+-- CmsChapter begin 2015-5-12 12:57:43---
 字段列表：
 	contentId:内容
 	parentId:父章节
@@ -135,7 +135,12 @@ menu项:
 	<li><a href="cmsChapter/list.html?navTabId=cmsChapter" target="navTab" rel="cmsChapter">管理</a></li>
 自定义指令：
 	分页列表查询：
-		<@d_chapterList extendNumber3=queryExtendNumber3 extendNumber4=queryExtendNumber4 parentId=queryParentId title=queryTitle extend1=queryExtend1 extend3=queryExtend3 extend2=queryExtend2 image=queryImage extend4=queryExtend4 extendNumber2=queryExtendNumber2 contentId=queryContentId extendNumber1=queryExtendNumber1 pageNo=pageNum count=numPerPage></@d_chapterList>
+		<@d_chapterList extendNumber3=queryExtendNumber3 extendNumber4=queryExtendNumber4 
+			parentId=queryParentId title=queryTitle extend1=queryExtend1 
+			extend3=queryExtend3 extend2=queryExtend2 image=queryImage 
+			extend4=queryExtend4 extendNumber2=queryExtendNumber2 contentId=queryContentId 
+			extendNumber1=queryExtendNumber1 
+			pageNo=pageNum count=numPerPage></@d_chapterList>
 		参数：
 			queryExtendNumber3：扩展数字字段3
 			queryExtendNumber4：扩展数字字段4
@@ -175,7 +180,7 @@ menu项:
 			t_bean:属性参考字段列表
 -- CmsChapterAttribute end --
 
--- CmsContent begin 2015-5-11 21:56:48---
+-- CmsContent begin 2015-5-12 12:57:43---
 字段列表：
 	title:标题
 	userId:发布用户
@@ -208,7 +213,13 @@ menu项:
 	<li><a href="cmsContent/list.html?navTabId=cmsContent" target="navTab" rel="cmsContent">管理</a></li>
 自定义指令：
 	分页列表查询：
-		<@d_contentList extendNumber3=queryExtendNumber3 extendNumber4=queryExtendNumber4 status=queryStatus extend1=queryExtend1 categoryId=queryCategoryId extend3=queryExtend3 extend2=queryExtend2 extend4=queryExtend4 isDisable=queryIsDisable modelId=queryModelId title=queryTitle userId=queryUserId extendNumber2=queryExtendNumber2 startPublishDate=queryStartPublishDate endPublishDate=queryEndPublishDate extendNumber1=queryExtendNumber1 pageNo=pageNum count=numPerPage></@d_contentList>
+		<@d_contentList extendNumber3=queryExtendNumber3 extendNumber4=queryExtendNumber4 
+			status=queryStatus extend1=queryExtend1 categoryId=queryCategoryId 
+			extend3=queryExtend3 extend2=queryExtend2 extend4=queryExtend4 
+			isDisable=queryIsDisable modelId=queryModelId title=queryTitle 
+			userId=queryUserId extendNumber2=queryExtendNumber2 startPublishDate=queryStartPublishDate endPublishDate=queryEndPublishDate 
+			extendNumber1=queryExtendNumber1 
+			orderField=orderField, orderType=orderType, pageNo=pageNum count=numPerPage></@d_contentList>
 		参数：
 			queryExtendNumber3：扩展数字字段3
 			queryExtendNumber4：扩展数字字段4
@@ -344,7 +355,7 @@ menu项:
 			t_bean:属性参考字段列表
 -- CmsModelExtend end --
 
--- CmsSite begin 2015-5-11 21:56:48---
+-- CmsSite begin 2015-5-12 12:57:43---
 字段列表：
 	name:站点名称
 	shortName:站点简称
@@ -353,13 +364,17 @@ menu项:
 	sitePath:站点访问地址
 	attachmentPath:附近路径
 	users:用户数
+	createDate:创建日期
 	isDisable:已删除
 menu项:
 	<li><a href="cmsSite/list.html?navTabId=cmsSite" target="navTab" rel="cmsSite">管理</a></li>
 自定义指令：
 	分页列表查询：
-		<@d_siteList isDisable=queryIsDisable pageNo=pageNum count=numPerPage></@d_siteList>
+		<@d_siteList startCreateDate=queryStartCreateDate endCreateDate=queryEndCreateDate isDisable=queryIsDisable 
+			orderField=orderField, orderType=orderType, pageNo=pageNum count=numPerPage></@d_siteList>
 		参数：
+			queryStartCreateDate：开始创建日期
+			queryEndCreateDate：结束创建日期
 			queryIsDisable：已删除
 		结果：
 			t_page:分页信息，totalCount：总条数，totalPage：总页数，pageSize每页数据条数，pageNo当前页数
@@ -414,3 +429,156 @@ menu项:
 			t_bean:属性参考字段列表
 -- CmsUser end --
 
+-- LogEmailCheck begin 2015-5-12 12:57:43---
+字段列表：
+	userId:用户
+	email:邮件地址
+	code:验证码
+	createDate:创建日期
+	checked:验证通过
+menu项:
+	<li><a href="logEmailCheck/list.html?navTabId=logEmailCheck" target="navTab" rel="logEmailCheck">管理</a></li>
+自定义指令：
+	分页列表查询：
+		<@d_logEmailCheckList userId=queryUserId startCreateDate=queryStartCreateDate endCreateDate=queryEndCreateDate 
+			checked=queryChecked 
+			orderField=orderField, orderType=orderType, pageNo=pageNum count=numPerPage></@d_logEmailCheckList>
+		参数：
+			queryUserId：用户
+			queryStartCreateDate：开始创建日期
+			queryEndCreateDate：结束创建日期
+			queryChecked：验证通过
+		结果：
+			t_page:分页信息，totalCount：总条数，totalPage：总页数，pageSize每页数据条数，pageNo当前页数
+			t_page.t_list: List<LogEmailCheck>对象 使用<#list t_list as a></#list> 遍历数据
+	单条记录查询：
+		<@d_logEmailCheck id=id></@d_logEmailCheck>
+		结果：
+			t_bean:属性参考字段列表
+-- LogEmailCheck end --
+
+-- LogLogin begin 2015-5-12 12:57:43---
+字段列表：
+	name:用户名
+	userId:用户
+	ip:IP
+	result:登录结果
+	createDate:登录日期
+	errorPassword:错误密码
+menu项:
+	<li><a href="logLogin/list.html?navTabId=logLogin" target="navTab" rel="logLogin">管理</a></li>
+自定义指令：
+	分页列表查询：
+		<@d_logLoginList result=queryResult userId=queryUserId 
+			name=queryName startCreateDate=queryStartCreateDate endCreateDate=queryEndCreateDate ip=queryIp 
+			orderField=orderField, orderType=orderType, pageNo=pageNum count=numPerPage></@d_logLoginList>
+		参数：
+			queryResult：登录结果
+			queryUserId：用户
+			queryName：用户名
+			queryStartCreateDate：开始登录日期
+			queryEndCreateDate：结束登录日期
+			queryIp：IP
+		结果：
+			t_page:分页信息，totalCount：总条数，totalPage：总页数，pageSize每页数据条数，pageNo当前页数
+			t_page.t_list: List<LogLogin>对象 使用<#list t_list as a></#list> 遍历数据
+	单条记录查询：
+		<@d_logLogin id=id></@d_logLogin>
+		结果：
+			t_bean:属性参考字段列表
+-- LogLogin end --
+
+-- LogOperate begin 2015-5-12 12:57:43---
+字段列表：
+	userId:用户
+	operate:操作
+	createDate:操作日期
+	content:内容
+menu项:
+	<li><a href="logOperate/list.html?navTabId=logOperate" target="navTab" rel="logOperate">管理</a></li>
+自定义指令：
+	分页列表查询：
+		<@d_logOperateList content=queryContent operate=queryOperate 
+			userId=queryUserId startCreateDate=queryStartCreateDate endCreateDate=queryEndCreateDate 
+			orderField=orderField, orderType=orderType, pageNo=pageNum count=numPerPage></@d_logOperateList>
+		参数：
+			queryContent：内容
+			queryOperate：操作
+			queryUserId：用户
+			queryStartCreateDate：开始操作日期
+			queryEndCreateDate：结束操作日期
+		结果：
+			t_page:分页信息，totalCount：总条数，totalPage：总页数，pageSize每页数据条数，pageNo当前页数
+			t_page.t_list: List<LogOperate>对象 使用<#list t_list as a></#list> 遍历数据
+	单条记录查询：
+		<@d_logOperate id=id></@d_logOperate>
+		结果：
+			t_bean:属性参考字段列表
+-- LogOperate end --
+
+-- LogPassword begin 2015-5-12 12:57:43---
+字段列表：
+	userId:用户
+	ip:IP
+	createDate:修改日期
+	oldPassword:旧密码
+	newPassword:新密码
+menu项:
+	<li><a href="logPassword/list.html?navTabId=logPassword" target="navTab" rel="logPassword">管理</a></li>
+自定义指令：
+	分页列表查询：
+		<@d_logPasswordList userId=queryUserId startCreateDate=queryStartCreateDate endCreateDate=queryEndCreateDate 
+			ip=queryIp 
+			orderField=orderField, orderType=orderType, pageNo=pageNum count=numPerPage></@d_logPasswordList>
+		参数：
+			queryUserId：用户
+			queryStartCreateDate：开始修改日期
+			queryEndCreateDate：结束修改日期
+			queryIp：IP
+		结果：
+			t_page:分页信息，totalCount：总条数，totalPage：总页数，pageSize每页数据条数，pageNo当前页数
+			t_page.t_list: List<LogPassword>对象 使用<#list t_list as a></#list> 遍历数据
+	单条记录查询：
+		<@d_logPassword id=id></@d_logPassword>
+		结果：
+			t_bean:属性参考字段列表
+-- LogPassword end --
+
+-- SystemUser begin 2015-5-12 12:57:43---
+字段列表：
+	name:用户名
+	password:密码
+	nickName:用户昵称
+	email:邮箱
+	emailChecked:已验证邮箱
+	superuserAccess:是否管理员
+	disable:已禁用
+	lastLoginDate:上次登录日期
+	lastLoginIp:上次登录IP
+	loginCount:登录次数
+	dateRegistered:注册日期
+menu项:
+	<li><a href="systemUser/list.html?navTabId=systemUser" target="navTab" rel="systemUser">管理</a></li>
+自定义指令：
+	分页列表查询：
+		<@d_systemUserList startDateRegistered=queryStartDateRegistered endDateRegistered=queryEndDateRegistered startLastLoginDate=queryStartLastLoginDate endLastLoginDate=queryEndLastLoginDate 
+			superuserAccess=querySuperuserAccess emailChecked=queryEmailChecked name=queryName 
+			disable=queryDisable 
+			orderField=orderField, orderType=orderType, pageNo=pageNum count=numPerPage></@d_systemUserList>
+		参数：
+			queryStartDateRegistered：开始注册日期
+			queryEndDateRegistered：结束注册日期
+			queryStartLastLoginDate：开始上次登录日期
+			queryEndLastLoginDate：结束上次登录日期
+			querySuperuserAccess：是否管理员
+			queryEmailChecked：已验证邮箱
+			queryName：用户名
+			queryDisable：已禁用
+		结果：
+			t_page:分页信息，totalCount：总条数，totalPage：总页数，pageSize每页数据条数，pageNo当前页数
+			t_page.t_list: List<SystemUser>对象 使用<#list t_list as a></#list> 遍历数据
+	单条记录查询：
+		<@d_systemUser id=id></@d_systemUser>
+		结果：
+			t_bean:属性参考字段列表
+-- SystemUser end --

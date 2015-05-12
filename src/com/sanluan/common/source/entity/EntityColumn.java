@@ -1,14 +1,16 @@
 package com.sanluan.common.source.entity;
 
 public class EntityColumn {
-	public EntityColumn(String name, String type,String title) {
+	public EntityColumn(String name, String type, boolean order, String title) {
 		this.name = name;
 		this.type = type;
+		this.order = order;
 		this.title = title;
 	}
 
 	private String name;
 	private String type;
+	private boolean order;
 	private String title;
 
 	/**
@@ -50,9 +52,25 @@ public class EntityColumn {
 	}
 
 	/**
-	 * @param title the title to set
+	 * @param title
+	 *            the title to set
 	 */
 	public void setTitle(String title) {
 		this.title = title;
+	}
+
+	/**
+	 * @return the order
+	 */
+	public boolean isOrder() {
+		return order;
+	}
+
+	/**
+	 * @param order
+	 *            the order to set
+	 */
+	public void setOrder(boolean order) {
+		this.order = order;
 	}
 }

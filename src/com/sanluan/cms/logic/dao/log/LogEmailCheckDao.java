@@ -9,27 +9,33 @@ import com.sanluan.common.base.BaseDao;
 import com.sanluan.common.handler.PageHandler;
 import com.sanluan.common.handler.QueryHandler;
 
-/**
- * @author zhangxd
- * 
- */
 @Repository
 public class LogEmailCheckDao extends BaseDao<LogEmailCheck> {
-	public PageHandler getPage(Integer userId, Boolean checked, Date startCreateDate, Date endCreateDate, int pageNo, int pageSize) {
+	public PageHandler getPage(Integer userId, Date startCreateDate, Date endCreateDate, 
+				Boolean checked, 
+				String orderField, String orderType, int pageNo, int pageSize) {
 		QueryHandler queryMaker = getQueryMaker("from LogEmailCheck bean");
 		if (notEmpty(userId)) {
 			queryMaker.condition("bean.userId = :userId").setParameter("userId", userId);
-		}
-		if (notEmpty(checked)) {
-			queryMaker.condition("bean.checked = :checked").setParameter("checked", checked);
 		}
 		if (notEmpty(startCreateDate)) {
 			queryMaker.condition("bean.createDate >= :startCreateDate").setParameter("startCreateDate", startCreateDate);
 		}
 		if (notEmpty(endCreateDate)) {
-			queryMaker.condition("bean.createDate < :endCreateDate").setParameter("endCreateDate", endCreateDate);
+			queryMaker.condition("bean.createDate < :endCreateDate").setParameter("endCreateDate", tomorrow(endCreateDate));
 		}
-		queryMaker.append("order by bean.createDate desc");
+		if (notEmpty(checked)) {
+			queryMaker.condition("bean.checked = :checked").setParameter("checked", checked);
+		}
+		if("asc".equals(orderType)){
+			orderType = "asc";
+		}else{
+			orderType = "desc";
+		}
+		switch(orderField) {
+			case "createDate" : queryMaker.append("order by bean.createDate " + orderType); break;
+			default : queryMaker.append("order by bean.id "+orderType);
+		}
 		return getPage(queryMaker, pageNo, pageSize);
 	}
 

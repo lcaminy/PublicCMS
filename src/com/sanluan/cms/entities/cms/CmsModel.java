@@ -37,13 +37,15 @@ public class CmsModel implements java.io.Serializable {
 	public CmsModel() {
 	}
 
-	public CmsModel(String name, boolean isDisable) {
+	public CmsModel(String name, String chapterName, boolean isDisable) {
 		this.name = name;
+		this.chapterName = chapterName;
 		this.isDisable = isDisable;
 	}
 
-	public CmsModel(String name, String templatePath, String templatePath1, boolean isDisable) {
+	public CmsModel(String name, String chapterName, String templatePath, String templatePath1, boolean isDisable) {
 		this.name = name;
+		this.chapterName = chapterName;
 		this.templatePath = templatePath;
 		this.templatePath1 = templatePath1;
 		this.isDisable = isDisable;
@@ -65,8 +67,8 @@ public class CmsModel implements java.io.Serializable {
 		return this.name;
 	}
 
-	public void setChapterName(String chapterName) {
-		this.chapterName = chapterName;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	@Column(name = "chapter_name", nullable = false, length = 200)
@@ -74,8 +76,8 @@ public class CmsModel implements java.io.Serializable {
 		return this.chapterName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setChapterName(String chapterName) {
+		this.chapterName = chapterName;
 	}
 
 	@Column(name = "template_path", length = 200)

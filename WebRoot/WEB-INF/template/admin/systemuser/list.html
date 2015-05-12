@@ -1,4 +1,7 @@
-<@d_systemUserList name=queryName superuserAccess=querySuperuserAccess disable=queryStatus startDateRegistered=queryStartDateRegistered endDateRegistered=queryEndDateRegistered pageNo=pageNum count=numPerPage>
+<@d_systemUserList startDateRegistered=queryStartDateRegistered endDateRegistered=queryEndDateRegistered startLastLoginDate=queryStartLastLoginDate endLastLoginDate=queryEndLastLoginDate 
+			superuserAccess=querySuperuserAccess emailChecked=queryEmailChecked name=queryName 
+			disable=queryDisable 
+			orderField=orderField, orderType=orderType, pageNo=pageNum count=numPerPage>
 <form id="pagerForm" method="post">
 	<#include "../include_page/queryParamters.html"/>
 </form>
@@ -25,10 +28,19 @@
 					</select>
 				</td>
 				<td>
-					<label>注册起止时间：</label>
-					<input type="text" name="queryStartDateRegistered" class="date" dateFmt="yyyy-MM-dd" minDate="2015-01-01" maxDate="{%y}-%M-{%d}" value="${queryStartDateRegistered!}" />
+					已验证邮箱：<input type="text" name="queryEmailChecked" value="${queryEmailChecked!}" />
+				</td>
+				<td>
+					<label>注册日期：</label>
+					<input type="text" name="queryStartDateRegistered" class="date" dateFmt="yyyy-MM-dd" maxDate="{%y}-%M-{%d}" value="${queryStartDateRegistered!}" />
 					-
-					<input type="text" name="queryEndDateRegistered" class="date" dateFmt="yyyy-MM-dd" minDate="2014-11-01" maxDate="{%y}-%M-{%d}" value="${queryEndDateRegistered!}" />
+					<input type="text" name="queryEndDateRegistered" class="date" dateFmt="yyyy-MM-dd" maxDate="{%y}-%M-{%d}" value="${queryEndDateRegistered!}" />
+				</td>
+				<td>
+					<label>上次登录日期：</label>
+					<input type="text" name="queryStartLastLoginDate" class="date" dateFmt="yyyy-MM-dd" maxDate="{%y}-%M-{%d}" value="${queryStartLastLoginDate!}" />
+					-
+					<input type="text" name="queryEndLastLoginDate" class="date" dateFmt="yyyy-MM-dd" maxDate="{%y}-%M-{%d}" value="${queryEndLastLoginDate!}" />
 				</td>
 			</tr>
 		</table>
@@ -47,22 +59,28 @@
 	<table class="table" width="100%" layoutH="137">
 		<thead>
 			<tr>
-				<th width="50">昵称</th>
-				<th width="50">用户名</th>
-				<th width="50">邮件地址</th>
-				<th width="50">状态</th>
-				<th width="50">最后登录时间</th>
-				<th width="50">注册时间</th>
+				<th>用户名</th>
+				<th>用户昵称</th>
+				<th>邮箱</th>
+				<th>已验证邮箱</th>
+				<th>已禁用</th>
+				<th orderField="lastLoginDate" class="<#if orderField??&&a.name==orderField><#if 'asc'=orderType>asc<#else>desc</#if><#else>order</#if>">上次登录日期</th>
+				<th>上次登录IP</th>
+				<th orderField="loginCount" class="<#if orderField??&&a.name==orderField><#if 'asc'=orderType>asc<#else>desc</#if><#else>order</#if>">登录次数</th>
+				<th orderField="dateRegistered" class="<#if orderField??&&a.name==orderField><#if 'asc'=orderType>asc<#else>desc</#if><#else>order</#if>">注册日期</th>
 			</tr>
 		</thead>
 		<tbody>
 			<#list t_page.list as a>
 			<tr target="sid" rel="${a.id}">
-				<td>${a.nickName}${(a.superuserAccess)?string('[<font color="red">超级管理员</font>]','')}</td>
 				<td>${a.name}</td>
+				<td>${a.nickName}${(a.superuserAccess)?string('[<font color="red">超级管理员</font>]','')}</td>
 				<td>${a.email}</td>
+				<td>${a.emailChecked!}</td>
 				<td>${(a.disable)?string('<font color="red">禁用</font>','正常')}</td>
 				<td>${a.lastLoginDate!}</td>
+				<td>${a.lastLoginIp!}</td>
+				<td>${a.loginCount!}</td>
 				<td>${a.dateRegistered}</td>
 			</tr>
 			</#list>

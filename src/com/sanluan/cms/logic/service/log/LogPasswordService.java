@@ -23,8 +23,12 @@ public class LogPasswordService extends BaseService<LogPassword, LogPasswordDao>
 	private LogPasswordDao dao;
 
 	@Transactional(readOnly = true)
-	public PageHandler getPage(Integer userId, String ip, Date startCreateDate, Date endCreateDate, int pageNo, int pageSize) {
-		return dao.getPage(userId, ip, startCreateDate, endCreateDate, pageNo, pageSize);
+	public PageHandler getPage(Integer userId, Date startCreateDate, Date endCreateDate, 
+				String ip, 
+				String orderField, String orderType, int pageNo, int pageSize) {
+		return dao.getPage(userId, startCreateDate, endCreateDate, 
+				ip, 
+				orderField, orderType, pageNo, pageSize);
 	}
 
 	@Override

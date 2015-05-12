@@ -1,4 +1,10 @@
-<@d_contentList extendNumber3=queryExtendNumber3 extendNumber4=queryExtendNumber4 status=queryStatus extend1=queryExtend1 categoryId=queryCategoryId extend3=queryExtend3 extend2=queryExtend2 extend4=queryExtend4 isDisable=queryIsDisable modelId=queryModelId title=queryTitle userId=queryUserId extendNumber2=queryExtendNumber2 startPublishDate=queryStartPublishDate endPublishDate=queryEndPublishDate extendNumber1=queryExtendNumber1 pageNo=pageNum count=numPerPage>
+<@d_contentList extendNumber3=queryExtendNumber3 extendNumber4=queryExtendNumber4 
+			status=queryStatus extend1=queryExtend1 categoryId=queryCategoryId 
+			extend3=queryExtend3 extend2=queryExtend2 extend4=queryExtend4 
+			isDisable=queryIsDisable modelId=queryModelId title=queryTitle 
+			userId=queryUserId extendNumber2=queryExtendNumber2 startPublishDate=queryStartPublishDate endPublishDate=queryEndPublishDate 
+			extendNumber1=queryExtendNumber1 
+			orderField=orderField, orderType=orderType, pageNo=pageNum count=numPerPage>
 <form id="pagerForm" method="post">
 	<#include "../include_page/queryParamters.html"/>
 </form>
@@ -80,11 +86,11 @@
 				<th>发布用户</th>
 				<th>分类</th>
 				<th>模型</th>
-				<th>分数</th>
-				<th>评论数</th>
-				<th>点击数</th>
-				<th>发布日期</th>
-				<th><a href="#">创建日期</a></th>
+				<th orderField="scores" class="<#if orderField??&&a.name==orderField><#if 'asc'=orderType>asc<#else>desc</#if><#else>order</#if>">分数</th>
+				<th orderField="comments" class="<#if orderField??&&a.name==orderField><#if 'asc'=orderType>asc<#else>desc</#if><#else>order</#if>">评论数</th>
+				<th orderField="clicks" class="<#if orderField??&&a.name==orderField><#if 'asc'=orderType>asc<#else>desc</#if><#else>order</#if>">点击数</th>
+				<th orderField="publishDate" class="<#if orderField??&&a.name==orderField><#if 'asc'=orderType>asc<#else>desc</#if><#else>order</#if>">发布日期</th>
+				<th>创建日期</th>
 				<th>状态</th>
 				<th>已删除</th>
 				<#-- <th>扩展字段1</th>

@@ -30,9 +30,14 @@ public class SystemUserService extends BaseService<SystemUser, SystemUserDao> {
 	private LogLoginDao logLogindao;
 
 	@Transactional(readOnly = true)
-	public PageHandler getPage(String name, Boolean superuserAccess, Boolean disable, Date startDateRegistered,
-			Date endDateRegistered, int pageNo, int pageSize) {
-		return dao.getPage(name, superuserAccess, disable, startDateRegistered, endDateRegistered, pageNo, pageSize);
+	public PageHandler getPage(Date startDateRegistered, Date endDateRegistered, Date startLastLoginDate, Date endLastLoginDate, 
+			Boolean superuserAccess, Boolean emailChecked, String name, 
+			Boolean disable, 
+			String orderField, String orderType, int pageNo, int pageSize) {
+		return dao.getPage(startDateRegistered, endDateRegistered, startLastLoginDate, endLastLoginDate, 
+				superuserAccess, emailChecked, name, 
+				disable, 
+				orderField, orderType, pageNo, pageSize);
 	}
 
 	public SystemUser findByName(String name) {

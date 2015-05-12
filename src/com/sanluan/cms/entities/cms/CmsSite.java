@@ -2,12 +2,15 @@ package com.sanluan.cms.entities.cms;
 
 // Generated 2015-5-6 15:49:39 by Hibernate Tools 4.0.0
 
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import com.sanluan.common.source.entity.MyColumn;
 
@@ -37,6 +40,8 @@ public class CmsSite implements java.io.Serializable {
 	private String attachmentPath;
 	@MyColumn(title = "用户数")
 	private int users;
+	@MyColumn(title = "创建日期", condition = true, order = true)
+	private Date createDate;
 	@MyColumn(title = "已删除", condition = true)
 	private boolean isDisable;
 
@@ -44,18 +49,19 @@ public class CmsSite implements java.io.Serializable {
 	}
 
 	public CmsSite(String name, String htmlPath, String dynamicSitePath, String sitePath, String attachmentPath, int users,
-			boolean isDisable) {
+			Date createDate, boolean isDisable) {
 		this.name = name;
 		this.htmlPath = htmlPath;
 		this.dynamicSitePath = dynamicSitePath;
 		this.sitePath = sitePath;
 		this.attachmentPath = attachmentPath;
 		this.users = users;
+		this.createDate = createDate;
 		this.isDisable = isDisable;
 	}
 
 	public CmsSite(String name, String shortName, String htmlPath, String dynamicSitePath, String sitePath,
-			String attachmentPath, int users, boolean isDisable) {
+			String attachmentPath, int users, Date createDate, boolean isDisable) {
 		this.name = name;
 		this.shortName = shortName;
 		this.htmlPath = htmlPath;
@@ -63,6 +69,7 @@ public class CmsSite implements java.io.Serializable {
 		this.sitePath = sitePath;
 		this.attachmentPath = attachmentPath;
 		this.users = users;
+		this.createDate = createDate;
 		this.isDisable = isDisable;
 	}
 
@@ -138,6 +145,16 @@ public class CmsSite implements java.io.Serializable {
 
 	public void setUsers(int users) {
 		this.users = users;
+	}
+
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "create_date", nullable = false, length = 19)
+	public Date getCreateDate() {
+		return this.createDate;
+	}
+
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
 	}
 
 	@Column(name = "is_disable", nullable = false)

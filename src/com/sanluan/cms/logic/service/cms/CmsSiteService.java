@@ -2,6 +2,7 @@ package com.sanluan.cms.logic.service.cms;
 
 // Generated 2015-5-8 16:50:23 by SourceMaker
 
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,8 +21,10 @@ public class CmsSiteService extends BaseService<CmsSite, CmsSiteDao> {
 	private CmsSiteDao dao;
 
 	@Transactional(readOnly = true)
-	public PageHandler getPage(Boolean isDisable, int pageNo, int pageSize) {
-		return dao.getPage(isDisable, pageNo, pageSize);
+	public PageHandler getPage(Date startCreateDate, Date endCreateDate, Boolean isDisable, 
+				String orderField, String orderType, int pageNo, int pageSize) {
+		return dao.getPage(startCreateDate, endCreateDate, isDisable, 
+				orderField, orderType, pageNo, pageSize);
 	}
 
 	@Override

@@ -23,8 +23,12 @@ public class LogEmailCheckService extends BaseService<LogEmailCheck, LogEmailChe
 	private LogEmailCheckDao dao;
 
 	@Transactional(readOnly = true)
-	public PageHandler getPage(Integer userId, Boolean checked, Date startCreateDate, Date endCreateDate, int pageNo, int pageSize) {
-		return dao.getPage(userId, checked, startCreateDate, endCreateDate, pageNo, pageSize);
+	public PageHandler getPage(Integer userId, Date startCreateDate, Date endCreateDate, 
+			Boolean checked, 
+			String orderField, String orderType, int pageNo, int pageSize) {
+		return dao.getPage(userId, startCreateDate, endCreateDate, 
+			checked, 
+			orderField, orderType, pageNo, pageSize);
 	}
 
 	public LogEmailCheck findByCode(String code) {

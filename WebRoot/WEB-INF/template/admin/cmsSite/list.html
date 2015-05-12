@@ -1,4 +1,5 @@
-<@d_siteList isDisable=queryIsDisable pageNo=pageNum count=numPerPage>
+<@d_siteList startCreateDate=queryStartCreateDate endCreateDate=queryEndCreateDate isDisable=queryIsDisable 
+			orderField=orderField, orderType=orderType, pageNo=pageNum count=numPerPage>
 <form id="pagerForm" method="post">
 	<#include "../include_page/queryParamters.html"/>
 </form>
@@ -7,6 +8,12 @@
 	<div class="searchBar">
 		<table class="searchContent">
 			<tr>
+				<td>
+					<label>创建日期：</label>
+					<input type="text" name="queryStartCreateDate" class="date" dateFmt="yyyy-MM-dd" maxDate="{%y}-%M-{%d}" value="${queryStartCreateDate!}" />
+					-
+					<input type="text" name="queryEndCreateDate" class="date" dateFmt="yyyy-MM-dd" maxDate="{%y}-%M-{%d}" value="${queryEndCreateDate!}" />
+				</td>
 				<td>
 					已删除：<input type="text" name="queryIsDisable" value="${queryIsDisable!}" />
 				</td>
@@ -34,6 +41,7 @@
 				<th>站点访问地址</th>
 				<th>附近路径</th>
 				<th>用户数</th>
+				<th orderField="createDate" class="<#if orderField??&&a.name==orderField><#if 'asc'=orderType>asc<#else>desc</#if><#else>order</#if>">创建日期</th>
 				<th>已删除</th>
 			</tr>
 		</thead>
@@ -47,6 +55,7 @@
 				<td>${a.sitePath!}</td>
 				<td>${a.attachmentPath!}</td>
 				<td>${a.users!}</td>
+				<td>${a.createDate!}</td>
 				<td>${a.isDisable!}</td>
 			</tr>
 			</#list>

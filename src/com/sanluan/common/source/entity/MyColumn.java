@@ -15,6 +15,8 @@ public @interface MyColumn {
 
 	boolean like() default false;
 	
+	boolean order() default false;
+	
 	boolean or() default false;
 	
 	String name() default "";

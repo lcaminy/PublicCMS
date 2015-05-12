@@ -23,9 +23,12 @@ public class LogLoginService extends BaseService<LogLogin, LogLoginDao> {
 	private LogLoginDao dao;
 
 	@Transactional(readOnly = true)
-	public PageHandler getPage(Integer userId, Boolean result, String name, String ip, Date startCreateDate, Date endCreateDate,
-			int pageNo, int pageSize) {
-		return dao.getPage(userId, result, name, ip, startCreateDate, endCreateDate, pageNo, pageSize);
+	public PageHandler getPage(Boolean result, Integer userId, 
+				String name, Date startCreateDate, Date endCreateDate, String ip, 
+				String orderField, String orderType, int pageNo, int pageSize) {
+		return dao.getPage(result, userId, 
+				name, startCreateDate, endCreateDate, ip, 
+				orderField, orderType, pageNo, pageSize);
 	}
 
 	@Override
