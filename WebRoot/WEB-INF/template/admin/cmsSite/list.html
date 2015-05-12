@@ -1,3 +1,4 @@
+<#if !queryIsDisable??><#assign queryIsDisable=0/></#if>
 <@d_siteList startCreateDate=queryStartCreateDate endCreateDate=queryEndCreateDate isDisable=queryIsDisable 
 			orderField=orderField orderType=orderType pageNo=pageNum count=numPerPage>
 <form id="pagerForm" method="post">
@@ -9,13 +10,13 @@
 		<table class="searchContent">
 			<tr>
 				<td>
+					已删除：<#include "../include_page/queryIsDisable.html"/>
+				</td>
+				<td>
 					<label>创建日期：</label>
 					<input type="text" name="queryStartCreateDate" class="date" dateFmt="yyyy-MM-dd" maxDate="{%y}-%M-{%d}" value="${queryStartCreateDate!}" />
 					-
 					<input type="text" name="queryEndCreateDate" class="date" dateFmt="yyyy-MM-dd" maxDate="{%y}-%M-{%d}" value="${queryEndCreateDate!}" />
-				</td>
-				<td>
-					已删除：<input type="text" name="queryIsDisable" value="${queryIsDisable!}" />
 				</td>
 			</tr>
 		</table>

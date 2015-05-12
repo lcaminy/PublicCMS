@@ -1,3 +1,4 @@
+<#if !queryIsDisable??><#assign queryIsDisable=0/></#if>
 <@d_modelList isDisable=queryIsDisable pageNo=pageNum count=numPerPage>
 <form id="pagerForm" method="post">
 	<#include "../include_page/queryParamters.html"/>
@@ -8,7 +9,7 @@
 		<table class="searchContent">
 			<tr>
 				<td>
-					已删除：<input type="text" name="queryIsDisable" value="${queryIsDisable!}" />
+					已删除：<#include "../include_page/queryIsDisable.html"/>
 				</td>
 			</tr>
 		</table>

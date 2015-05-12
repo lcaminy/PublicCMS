@@ -1,3 +1,4 @@
+<#if !queryIsDisable??><#assign queryIsDisable=0/></#if>
 <@d_siteUserList siteId=querySiteId userId=queryUserId isAdmin=queryIsAdmin isDisable=queryIsDisable pageNo=pageNum count=numPerPage>
 <form id="pagerForm" method="post">
 	<#include "../include_page/queryParamters.html"/>
@@ -8,6 +9,9 @@
 		<table class="searchContent">
 			<tr>
 				<td>
+					已删除：<#include "../include_page/queryIsDisable.html"/>
+				</td>
+				<td>
 					站点：<input type="text" name="querySiteId" value="${querySiteId!}" />
 				</td>
 				<td>
@@ -15,9 +19,6 @@
 				</td>
 				<td>
 					是否管理员：<input type="text" name="queryIsAdmin" value="${queryIsAdmin!}" />
-				</td>
-				<td>
-					已禁用：<input type="text" name="queryIsDisable" value="${queryIsDisable!}" />
 				</td>
 			</tr>
 		</table>
