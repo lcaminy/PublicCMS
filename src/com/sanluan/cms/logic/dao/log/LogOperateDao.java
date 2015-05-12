@@ -11,9 +11,8 @@ import com.sanluan.common.handler.QueryHandler;
 
 @Repository
 public class LogOperateDao extends BaseDao<LogOperate> {
-	public PageHandler getPage(String content, String operate, 
-				Integer userId, Date startCreateDate, Date endCreateDate, 
-				String orderField, String orderType, int pageNo, int pageSize) {
+	public PageHandler getPage(String content, String operate, Integer userId, Date startCreateDate, Date endCreateDate,
+			String orderField, String orderType, int pageNo, int pageSize) {
 		QueryHandler queryMaker = getQueryMaker("from LogOperate bean");
 		if (notEmpty(content)) {
 			queryMaker.condition("bean.content like :content").setParameter("content", like(content));
@@ -30,14 +29,20 @@ public class LogOperateDao extends BaseDao<LogOperate> {
 		if (notEmpty(endCreateDate)) {
 			queryMaker.condition("bean.createDate < :endCreateDate").setParameter("endCreateDate", tomorrow(endCreateDate));
 		}
-		if("asc".equals(orderType)){
+		if ("asc".equals(orderType)) {
 			orderType = "asc";
-		}else{
+		} else {
 			orderType = "desc";
 		}
-		switch(orderField) {
-			case "createDate" : queryMaker.append("order by bean.createDate " + orderType); break;
-			default : queryMaker.append("order by bean.id "+orderType);
+		if (!notEmpty(orderField)) {
+			orderField = "";
+		}
+		switch (orderField) {
+		case "createDate":
+			queryMaker.append("order by bean.createDate " + orderType);
+			break;
+		default:
+			queryMaker.append("order by bean.id " + orderType);
 		}
 		return getPage(queryMaker, pageNo, pageSize);
 	}

@@ -1,6 +1,6 @@
 <@d_logEmailCheckList userId=queryUserId startCreateDate=queryStartCreateDate endCreateDate=queryEndCreateDate 
 			checked=queryChecked 
-			orderField=orderField, orderType=orderType, pageNo=pageNum count=numPerPage>
+			orderField=orderField orderType=orderType pageNo=pageNum count=numPerPage>
 <form id="pagerForm" method="post">
 	<#include "../include_page/queryParamters.html"/>
 </form>
@@ -41,7 +41,7 @@
 				<th>用户</th>
 				<th>邮件地址</th>
 				<th>验证码</th>
-				<th orderField="createDate" class="<#if orderField??&&a.name==orderField><#if 'asc'=orderType>asc<#else>desc</#if><#else>order</#if>">创建日期</th>
+				<th orderField="createDate" class="<#if orderField??&&'createDate'==orderField><#if 'asc'=orderType>asc<#else>desc</#if><#else>order</#if>">创建日期</th>
 				<th>验证通过</th>
 			</tr>
 		</thead>

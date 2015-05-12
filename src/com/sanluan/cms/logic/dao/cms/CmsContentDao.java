@@ -13,13 +13,10 @@ import com.sanluan.common.handler.QueryHandler;
 
 @Repository
 public class CmsContentDao extends BaseDao<CmsContent> {
-	public PageHandler getPage(Integer extendNumber3, Integer extendNumber4, 
-				Integer status, String extend1, String categoryId, 
-				String extend3, String extend2, String extend4, 
-				Boolean isDisable, Integer modelId, String title, 
-				Integer userId, Integer extendNumber2, Date startPublishDate, Date endPublishDate, 
-				Integer extendNumber1, 
-				String orderField, String orderType, int pageNo, int pageSize) {
+	public PageHandler getPage(Integer extendNumber3, Integer extendNumber4, Integer status, String extend1, String categoryId,
+			String extend3, String extend2, String extend4, Boolean isDisable, Integer modelId, String title, Integer userId,
+			Integer extendNumber2, Date startPublishDate, Date endPublishDate, Integer extendNumber1, String orderField,
+			String orderType, int pageNo, int pageSize) {
 		QueryHandler queryMaker = getQueryMaker("from CmsContent bean");
 		if (notEmpty(extendNumber3)) {
 			queryMaker.condition("bean.extendNumber3 = :extendNumber3").setParameter("extendNumber3", extendNumber3);
@@ -69,17 +66,29 @@ public class CmsContentDao extends BaseDao<CmsContent> {
 		if (notEmpty(extendNumber1)) {
 			queryMaker.condition("bean.extendNumber1 = :extendNumber1").setParameter("extendNumber1", extendNumber1);
 		}
-		if("asc".equals(orderType)){
+		if ("asc".equals(orderType)) {
 			orderType = "asc";
-		}else{
+		} else {
 			orderType = "desc";
 		}
-		switch(orderField) {
-			case "scores" : queryMaker.append("order by bean.scores " + orderType); break;
-			case "comments" : queryMaker.append("order by bean.comments " + orderType); break;
-			case "clicks" : queryMaker.append("order by bean.clicks " + orderType); break;
-			case "publishDate" : queryMaker.append("order by bean.publishDate " + orderType); break;
-			default : queryMaker.append("order by bean.id "+orderType);
+		if (!notEmpty(orderField)) {
+			orderField = "";
+		}
+		switch (orderField) {
+		case "scores":
+			queryMaker.append("order by bean.scores " + orderType);
+			break;
+		case "comments":
+			queryMaker.append("order by bean.comments " + orderType);
+			break;
+		case "clicks":
+			queryMaker.append("order by bean.clicks " + orderType);
+			break;
+		case "publishDate":
+			queryMaker.append("order by bean.publishDate " + orderType);
+			break;
+		default:
+			queryMaker.append("order by bean.id " + orderType);
 		}
 		return getPage(queryMaker, pageNo, pageSize);
 	}

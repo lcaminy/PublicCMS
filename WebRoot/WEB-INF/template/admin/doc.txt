@@ -219,7 +219,7 @@ menu项:
 			isDisable=queryIsDisable modelId=queryModelId title=queryTitle 
 			userId=queryUserId extendNumber2=queryExtendNumber2 startPublishDate=queryStartPublishDate endPublishDate=queryEndPublishDate 
 			extendNumber1=queryExtendNumber1 
-			orderField=orderField, orderType=orderType, pageNo=pageNum count=numPerPage></@d_contentList>
+			orderField=orderField orderType=orderType pageNo=pageNum count=numPerPage></@d_contentList>
 		参数：
 			queryExtendNumber3：扩展数字字段3
 			queryExtendNumber4：扩展数字字段4
@@ -371,7 +371,7 @@ menu项:
 自定义指令：
 	分页列表查询：
 		<@d_siteList startCreateDate=queryStartCreateDate endCreateDate=queryEndCreateDate isDisable=queryIsDisable 
-			orderField=orderField, orderType=orderType, pageNo=pageNum count=numPerPage></@d_siteList>
+			orderField=orderField orderType=orderType pageNo=pageNum count=numPerPage></@d_siteList>
 		参数：
 			queryStartCreateDate：开始创建日期
 			queryEndCreateDate：结束创建日期
@@ -442,7 +442,7 @@ menu项:
 	分页列表查询：
 		<@d_logEmailCheckList userId=queryUserId startCreateDate=queryStartCreateDate endCreateDate=queryEndCreateDate 
 			checked=queryChecked 
-			orderField=orderField, orderType=orderType, pageNo=pageNum count=numPerPage></@d_logEmailCheckList>
+			orderField=orderField orderType=orderType pageNo=pageNum count=numPerPage></@d_logEmailCheckList>
 		参数：
 			queryUserId：用户
 			queryStartCreateDate：开始创建日期
@@ -471,7 +471,7 @@ menu项:
 	分页列表查询：
 		<@d_logLoginList result=queryResult userId=queryUserId 
 			name=queryName startCreateDate=queryStartCreateDate endCreateDate=queryEndCreateDate ip=queryIp 
-			orderField=orderField, orderType=orderType, pageNo=pageNum count=numPerPage></@d_logLoginList>
+			orderField=orderField orderType=orderType pageNo=pageNum count=numPerPage></@d_logLoginList>
 		参数：
 			queryResult：登录结果
 			queryUserId：用户
@@ -500,7 +500,7 @@ menu项:
 	分页列表查询：
 		<@d_logOperateList content=queryContent operate=queryOperate 
 			userId=queryUserId startCreateDate=queryStartCreateDate endCreateDate=queryEndCreateDate 
-			orderField=orderField, orderType=orderType, pageNo=pageNum count=numPerPage></@d_logOperateList>
+			orderField=orderField orderType=orderType pageNo=pageNum count=numPerPage></@d_logOperateList>
 		参数：
 			queryContent：内容
 			queryOperate：操作
@@ -529,7 +529,7 @@ menu项:
 	分页列表查询：
 		<@d_logPasswordList userId=queryUserId startCreateDate=queryStartCreateDate endCreateDate=queryEndCreateDate 
 			ip=queryIp 
-			orderField=orderField, orderType=orderType, pageNo=pageNum count=numPerPage></@d_logPasswordList>
+			orderField=orderField orderType=orderType pageNo=pageNum count=numPerPage></@d_logPasswordList>
 		参数：
 			queryUserId：用户
 			queryStartCreateDate：开始修改日期
@@ -564,7 +564,7 @@ menu项:
 		<@d_systemUserList startDateRegistered=queryStartDateRegistered endDateRegistered=queryEndDateRegistered startLastLoginDate=queryStartLastLoginDate endLastLoginDate=queryEndLastLoginDate 
 			superuserAccess=querySuperuserAccess emailChecked=queryEmailChecked name=queryName 
 			disable=queryDisable 
-			orderField=orderField, orderType=orderType, pageNo=pageNum count=numPerPage></@d_systemUserList>
+			orderField=orderField orderType=orderType pageNo=pageNum count=numPerPage></@d_systemUserList>
 		参数：
 			queryStartDateRegistered：开始注册日期
 			queryEndDateRegistered：结束注册日期

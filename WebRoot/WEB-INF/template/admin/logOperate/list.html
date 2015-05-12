@@ -1,6 +1,6 @@
 <@d_logOperateList content=queryContent operate=queryOperate 
 			userId=queryUserId startCreateDate=queryStartCreateDate endCreateDate=queryEndCreateDate 
-			orderField=orderField, orderType=orderType, pageNo=pageNum count=numPerPage>
+			orderField=orderField orderType=orderType pageNo=pageNum count=numPerPage>
 <form id="pagerForm" method="post">
 	<#include "../include_page/queryParamters.html"/>
 </form>
@@ -43,7 +43,7 @@
 			<tr>
 				<th>用户</th>
 				<th>操作</th>
-				<th orderField="createDate" class="<#if orderField??&&a.name==orderField><#if 'asc'=orderType>asc<#else>desc</#if><#else>order</#if>">操作日期</th>
+				<th orderField="createDate" class="<#if orderField??&&'createDate'==orderField><#if 'asc'=orderType>asc<#else>desc</#if><#else>order</#if>">操作日期</th>
 				<th>内容</th>
 			</tr>
 		</thead>

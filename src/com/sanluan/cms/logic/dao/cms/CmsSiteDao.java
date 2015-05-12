@@ -30,6 +30,9 @@ public class CmsSiteDao extends BaseDao<CmsSite> {
 		} else {
 			orderType = "desc";
 		}
+		if (!notEmpty(orderField)) {
+			orderField = "";
+		}
 		switch (orderField) {
 		case "createDate":
 			queryMaker.append("order by bean.createDate " + orderType);

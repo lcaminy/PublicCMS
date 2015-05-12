@@ -45,6 +45,9 @@ public class SystemUserDao extends BaseDao<SystemUser> {
 		}else{
 			orderType = "desc";
 		}
+		if(!notEmpty(orderField)){
+			orderField="";
+		}
 		switch(orderField) {
 			case "lastLoginDate" : queryMaker.append("order by bean.lastLoginDate " + orderType); break;
 			case "loginCount" : queryMaker.append("order by bean.loginCount " + orderType); break;

@@ -1,6 +1,6 @@
 <@d_logLoginList result=queryResult userId=queryUserId 
 			name=queryName startCreateDate=queryStartCreateDate endCreateDate=queryEndCreateDate ip=queryIp 
-			orderField=orderField, orderType=orderType, pageNo=pageNum count=numPerPage>
+			orderField=orderField orderType=orderType pageNo=pageNum count=numPerPage>
 <form id="pagerForm" method="post">
 	<#include "../include_page/queryParamters.html"/>
 </form>
@@ -48,7 +48,7 @@
 				<th>用户</th>
 				<th>IP</th>
 				<th>登录结果</th>
-				<th orderField="createDate" class="<#if orderField??&&a.name==orderField><#if 'asc'=orderType>asc<#else>desc</#if><#else>order</#if>">登录日期</th>
+				<th orderField="createDate" class="<#if orderField??&&'createDate'==orderField><#if 'asc'=orderType>asc<#else>desc</#if><#else>order</#if>">登录日期</th>
 				<th>错误密码</th>
 			</tr>
 		</thead>

@@ -1,7 +1,7 @@
 <@d_systemUserList startDateRegistered=queryStartDateRegistered endDateRegistered=queryEndDateRegistered startLastLoginDate=queryStartLastLoginDate endLastLoginDate=queryEndLastLoginDate 
 			superuserAccess=querySuperuserAccess emailChecked=queryEmailChecked name=queryName 
 			disable=queryDisable 
-			orderField=orderField, orderType=orderType, pageNo=pageNum count=numPerPage>
+			orderField=orderField orderType=orderType pageNo=pageNum count=numPerPage>
 <form id="pagerForm" method="post">
 	<#include "../include_page/queryParamters.html"/>
 </form>
@@ -64,10 +64,10 @@
 				<th>邮箱</th>
 				<th>已验证邮箱</th>
 				<th>已禁用</th>
-				<th orderField="lastLoginDate" class="<#if orderField??&&a.name==orderField><#if 'asc'=orderType>asc<#else>desc</#if><#else>order</#if>">上次登录日期</th>
+				<th orderField="lastLoginDate" class="<#if orderField??&&'lastLoginDate'==orderField><#if 'asc'=orderType>asc<#else>desc</#if><#else>order</#if>">上次登录日期</th>
 				<th>上次登录IP</th>
-				<th orderField="loginCount" class="<#if orderField??&&a.name==orderField><#if 'asc'=orderType>asc<#else>desc</#if><#else>order</#if>">登录次数</th>
-				<th orderField="dateRegistered" class="<#if orderField??&&a.name==orderField><#if 'asc'=orderType>asc<#else>desc</#if><#else>order</#if>">注册日期</th>
+				<th orderField="loginCount" class="<#if orderField??&&'loginCount'==orderField><#if 'asc'=orderType>asc<#else>desc</#if><#else>order</#if>">登录次数</th>
+				<th orderField="dateRegistered" class="<#if orderField??&&'dateRegistered'==orderField><#if 'asc'=orderType>asc<#else>desc</#if><#else>order</#if>">注册日期</th>
 			</tr>
 		</thead>
 		<tbody>

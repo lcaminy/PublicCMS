@@ -19,6 +19,9 @@
 		}else{
 			orderType = "desc";
 		}
+		if(!notEmpty(orderField)){
+			orderField="";
+		}
 		switch(orderField) {
 		<#list columnList as a><#if a.order>
 			case "${a.name}" : queryMaker.append("order by bean.${a.name} " + orderType); break;

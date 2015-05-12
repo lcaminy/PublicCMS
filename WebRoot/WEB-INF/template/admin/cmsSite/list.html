@@ -1,5 +1,5 @@
 <@d_siteList startCreateDate=queryStartCreateDate endCreateDate=queryEndCreateDate isDisable=queryIsDisable 
-			orderField=orderField, orderType=orderType, pageNo=pageNum count=numPerPage>
+			orderField=orderField orderType=orderType pageNo=pageNum count=numPerPage>
 <form id="pagerForm" method="post">
 	<#include "../include_page/queryParamters.html"/>
 </form>
@@ -41,7 +41,7 @@
 				<th>站点访问地址</th>
 				<th>附近路径</th>
 				<th>用户数</th>
-				<th orderField="createDate" class="<#if orderField??&&a.name==orderField><#if 'asc'=orderType>asc<#else>desc</#if><#else>order</#if>">创建日期</th>
+				<th orderField="createDate" class="<#if orderField??&&'createDate'==orderField><#if 'asc'=orderType>asc<#else>desc</#if><#else>order</#if>">创建日期</th>
 				<th>已删除</th>
 			</tr>
 		</thead>
