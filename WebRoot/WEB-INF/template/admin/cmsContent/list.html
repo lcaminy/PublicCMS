@@ -1,4 +1,4 @@
-<#if !queryIsDisable??><#assign queryIsDisable=0/></#if>
+<#if !queryIsDisable??><#assign queryIsDisable="0"/></#if>
 <@d_contentList extendNumber3=queryExtendNumber3 extendNumber4=queryExtendNumber4 
 			status=queryStatus extend1=queryExtend1 categoryId=queryCategoryId 
 			extend3=queryExtend3 extend2=queryExtend2 extend4=queryExtend4 
@@ -14,7 +14,7 @@
 		<table class="searchContent">
 			<tr>
 				<td>
-					已删除：<#include "../include_page/queryIsDisable.html"/>
+					<label>已删除：</label><#include "../include_page/queryIsDisable.html"/>
 				</td>
 				<td>
 					状态：<input type="text" name="queryStatus" value="${queryStatus!}" />
