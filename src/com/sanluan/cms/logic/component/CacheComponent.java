@@ -23,6 +23,9 @@ import org.apache.commons.lang3.time.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
+
+import com.sanluan.common.tools.FreeMarkerUtils;
 
 import freemarker.ext.servlet.IncludePage;
 
@@ -36,6 +39,9 @@ public class CacheComponent {
 	private Map<Integer, String[]> cacheFilePaths = new HashMap<Integer, String[]>();
 
 	private String basePath;
+
+	@Autowired
+	private FreeMarkerConfigurer freeMarkerConfigurer;
 
 	/**
 	 * @param path
@@ -92,9 +98,9 @@ public class CacheComponent {
 			cacheFile.delete();
 		}
 	}
-	
+
 	public void clearTemplateCache() {
-		htmlComponent.getFreeMarkerConfigurer().getConfiguration().clearTemplateCache();
+		freeMarkerConfigurer.getConfiguration().clearTemplateCache();
 	}
 
 	private String getBasePath(HttpServletRequest request) {
@@ -110,9 +116,11 @@ public class CacheComponent {
 				return cachePath;
 			} else {
 				response.setCharacterEncoding("UTF-8");
-				if (htmlComponent.makeHtml(getTemplateFilePath(templatePath), htmlPath, model)) {
+				try {
+					FreeMarkerUtils.makeFileByFile(getTemplateFilePath(templatePath), htmlPath,
+							freeMarkerConfigurer.getConfiguration(), model);
 					return cachePath;
-				} else {
+				} catch (Exception e) {
 					return templatePath;
 				}
 			}
@@ -156,11 +164,8 @@ public class CacheComponent {
 	}
 
 	private String getTemplateFilePath(String path) {
-		return  path + TEMPLATE_SUFFIX;
+		return path + TEMPLATE_SUFFIX;
 	}
-
-	@Autowired
-	private HtmlComponent htmlComponent;
 
 	/**
 	 * @param cacheFileDirectory

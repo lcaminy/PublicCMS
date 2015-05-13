@@ -8,11 +8,17 @@ import java.io.OutputStreamWriter;
 import java.io.Writer;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.ui.ModelMap;
+import org.springframework.ui.freemarker.FreeMarkerTemplateUtils;
+
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 
 public class FreeMarkerUtils {
+	private static Logger log = LoggerFactory.getLogger(FreeMarkerUtils.class);
 
 	public static void makeFileByFile(String templateFilePath, String destFilePath, Configuration config,
 			Map<String, Object> model) throws IOException, TemplateException {
@@ -36,9 +42,23 @@ public class FreeMarkerUtils {
 			Writer out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(destFile, append), "utf-8"));
 			t.process(model, out);
 			out.close();
-			System.out.println("info:	" + destFilePath + "	保存成功！");
+			log.info(destFilePath + "	保存成功！");
 		} else {
-			System.out.println("error:	" + destFilePath + "	已经存在！");
+			log.error(destFilePath + "	已经存在！");
+		}
+	}
+
+	public String makeStringByFile(String template, Configuration configuration) {
+		return makeStringByFile(template, configuration, new ModelMap());
+	}
+
+	public String makeStringByFile(String template, Configuration configuration, ModelMap model) {
+		try {
+			Template tpl = configuration.getTemplate(template);
+			return FreeMarkerTemplateUtils.processTemplateIntoString(tpl, model);
+		} catch (Exception e) {
+			log.error(e.getMessage());
+			return "";
 		}
 	}
 
