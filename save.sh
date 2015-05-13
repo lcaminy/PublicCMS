@@ -1,4 +1,4 @@
-cd /e/Users/workspace/eclipse/sanluan_cms
+cd /e/Users/workspace/eclipse/PublicCMS
 git add -A .
 git commit -m "change"
 git push
