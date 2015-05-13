@@ -58,7 +58,6 @@ public class CacheComponent {
 		}
 		model = (ModelMap) model.clone();
 
-		@SuppressWarnings("unchecked")
 		Enumeration<String> parameters = request.getParameterNames();
 		StringBuilder sb = new StringBuilder();
 		while (parameters.hasMoreElements()) {
