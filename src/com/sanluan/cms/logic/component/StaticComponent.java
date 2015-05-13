@@ -16,7 +16,6 @@ import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
 import com.sanluan.common.tools.FreeMarkerUtils;
 
 import freemarker.template.Configuration;
-import freemarker.template.TemplateException;
 
 /**
  * @author zhangxd
@@ -68,13 +67,12 @@ public class StaticComponent {
 	public Configuration getConfiguration() {
 		if (null == configuration) {
 			try {
+				configuration = freeMarkerConfigurer.getConfiguration();
 				if (StringUtils.isNotBlank(templateLoaderPath)) {
-					configuration = freeMarkerConfigurer.createConfiguration();
+					configuration = (Configuration) configuration.clone();
 					configuration.setDirectoryForTemplateLoading(new File(templateLoaderPath));
-				} else {
-					configuration = freeMarkerConfigurer.getConfiguration();
 				}
-			} catch (IOException | TemplateException e) {
+			} catch (IOException e) {
 			}
 		}
 		return configuration;
