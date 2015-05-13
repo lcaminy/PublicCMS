@@ -100,6 +100,10 @@
 			</props>
 		</property>
 	</bean>
+	<bean class="com.sanluan.cms.logic.component.StaticComponent">
+		<property name="templateLoaderPath" value="E:/template"/>
+		<property name="staticFileDirectory" value="E:/site/"/>
+	</bean>
 	<bean class="com.sanluan.common.handler.FreeMarkerExtendHandler">
 		<property name="directiveBasePackage" value="com.sanluan.cms.views.directive"/>
 		<property name="directivePrefix" value="d_"/>
