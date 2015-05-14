@@ -29,7 +29,6 @@ public class StaticComponent {
 	@Autowired
 	private FreeMarkerConfigurer freeMarkerConfigurer;
 
-	@Autowired
 	private Configuration configuration;
 
 	public boolean createStaticFile(String templatePath, String filePath, HttpServletRequest request, ModelMap model) {
