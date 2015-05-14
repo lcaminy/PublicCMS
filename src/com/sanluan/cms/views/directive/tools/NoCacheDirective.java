@@ -20,6 +20,7 @@ import freemarker.template.TemplateModel;
  * @author zhangxd
  * 
  */
+@SuppressWarnings("deprecation")
 @Component
 public class NoCacheDirective implements TemplateDirectiveModel {
 
